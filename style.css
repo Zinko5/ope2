@@ -1,0 +1,669 @@
+/* ==========================================================================
+   DISEÑO ESTILO HAND-DRAWN SKETCH-NOTE (CUADERNO DE TEORÍA DE JUEGOS)
+   ========================================================================== */
+
+/* Variables CSS */
+:root {
+    --bg-color: #F4F1EA;
+    --text-color: #0E2A5C;
+    --accent-color: #D12828;
+    --graphite-color: #333333;
+    --highlighter-color: #FFFFA5;
+    --ballpoint-blue: #0000FF;
+    
+    --font-handwritten: 'Patrick Hand', cursive, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Reset y configuraciones generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    /* Fondo con patrón de líneas de cuaderno cuadriculado/rayado */
+    background-image: 
+        linear-gradient(rgba(14, 42, 92, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 42, 92, 0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--text-color);
+    font-family: var(--font-handwritten);
+    font-size: 1.35rem;
+    line-height: 1.6;
+    padding: 1rem 0.5rem;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Espiral del cuaderno a la izquierda */
+.notebook-spiral {
+    position: fixed;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 25px;
+    background-image: radial-gradient(circle, var(--graphite-color) 4px, transparent 6px);
+    background-size: 25px 40px;
+    opacity: 0.15;
+    z-index: 50;
+    pointer-events: none;
+}
+
+/* Contenedor principal de la página de cuaderno */
+.notebook-container {
+    background-color: #FAF8F5;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 2rem 3.5rem;
+    border-left: 3px double rgba(14, 42, 92, 0.15);
+    border-right: 1px solid rgba(14, 42, 92, 0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    border-radius: 4px;
+}
+
+/* Margen vertical rojo de cuaderno escolar */
+.notebook-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 42px;
+    width: 2px;
+    background-color: rgba(209, 40, 40, 0.25);
+    pointer-events: none;
+}
+
+/* Encabezado */
+.presentation-header {
+    margin-bottom: 2rem;
+    position: relative;
+    border-bottom: 2px dashed rgba(14, 42, 92, 0.15);
+    padding-bottom: 1rem;
+}
+
+.handwritten-title {
+    font-family: var(--font-handwritten);
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    transform: rotate(-1deg);
+    display: inline-block;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--graphite-color);
+    font-style: italic;
+}
+
+/* Navegación por pestañas */
+.notebook-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 1px;
+}
+
+.tab-btn {
+    font-family: var(--font-handwritten);
+    background-color: #EFECE3;
+    border: 2px solid var(--text-color);
+    border-bottom: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s, transform 0.2s;
+    color: var(--text-color);
+    position: relative;
+    top: 2px;
+}
+
+.tab-btn:hover {
+    background-color: #E5E1D5;
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background-color: #FAF8F5;
+    border-bottom: 3px solid #FAF8F5;
+    font-weight: 700;
+    top: 3px;
+    z-index: 10;
+}
+
+.tab-number {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background-color: var(--text-color);
+    color: #FAF8F5;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+/* Cronómetro de apoyo */
+.presentation-timer-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--highlighter-color);
+    border: 1px dashed var(--graphite-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    transform: rotate(0.5deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.timer-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.mono-font {
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+/* Páginas de la presentación */
+.notebook-page {
+    position: relative;
+    min-height: 400px;
+}
+
+.presenter-section {
+    display: none;
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+.presenter-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Efectos de "Cinta Adhesiva" (Tape) */
+.tape-effect {
+    background: rgba(244, 241, 234, 0.9);
+    border-left: 1px dashed rgba(14, 42, 92, 0.2);
+    border-right: 1px dashed rgba(14, 42, 92, 0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    color: var(--accent-color);
+    display: inline-block;
+    padding: 0.3rem 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    transform: rotate(-1.5deg);
+    font-size: 1.25rem;
+    position: relative;
+}
+
+/* Diseño Asimétrico */
+.layout-asymmetric {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.layout-asymmetric.rev {
+    grid-template-columns: 1fr 1.4fr;
+}
+
+@media (max-width: 768px) {
+    .layout-asymmetric, .layout-asymmetric.rev {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos de Tarjetas estilo Boceto */
+.card {
+    background-color: #FAF8F5;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.sketch-border {
+    border: 2px solid var(--graphite-color);
+    /* Borde wobbly de dibujo manual usando radios irregulares */
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.handwritten-h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    border-bottom: 1px dashed rgba(14, 42, 92, 0.15);
+    padding-bottom: 0.2rem;
+}
+
+.handwritten-h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.handwritten-h4 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Resaltador amarillo */
+.highlight-yellow {
+    background-color: var(--highlighter-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Nota adhesiva / Sticker */
+.note-sticker {
+    background-color: #FFFFA5;
+    color: #444012;
+    border: 1px solid #E6D247;
+    border-radius: 3px;
+    padding: 1.2rem;
+    position: relative;
+    transform: rotate(1deg);
+    box-shadow: 3px 5px 12px rgba(0,0,0,0.06);
+    margin-top: 1.5rem;
+}
+
+.yellow-sticker {
+    background-color: #FFF9D0;
+    transform: rotate(-1deg);
+}
+
+.sticker-pin {
+    position: absolute;
+    top: -10px;
+    left: 45%;
+    font-size: 1.2rem;
+}
+
+/* Barra lateral de dibujos y notas */
+.doodle-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.doodle-box {
+    border: 1px dashed var(--text-color);
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: rgba(14, 42, 92, 0.02);
+}
+
+.doodle-list {
+    list-style: none;
+    padding-left: 0.5rem;
+}
+
+.doodle-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.doodle-list li::before {
+    content: '✏️';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 0.85rem;
+}
+
+.mini-list li::before {
+    content: '➔';
+    font-weight: 700;
+}
+
+/* Matemáticas y Monospace */
+.mono-math {
+    font-family: var(--font-mono);
+    background-color: rgba(14, 42, 92, 0.04);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    text-align: center;
+    border-left: 3px solid var(--accent-color);
+}
+
+/* Botón estilo boceto */
+.btn-handdrawn {
+    font-family: var(--font-handwritten);
+    background-color: var(--accent-color);
+    color: #FAF8F5;
+    border: 2px solid var(--graphite-color);
+    padding: 0.4rem 1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-handdrawn:hover {
+    background-color: #B22020;
+    transform: scale(1.03);
+}
+
+.btn-handdrawn:active {
+    transform: translateY(1px);
+}
+
+.btn-handdrawn.secondary-btn {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.btn-handdrawn.secondary-btn:hover {
+    background-color: #E2DDD0;
+}
+
+.mini-btn {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.9rem;
+}
+
+/* Tablas */
+.table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.sketch-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-handwritten);
+    margin: 0.5rem 0;
+}
+
+.sketch-table caption {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.sketch-table th, .sketch-table td {
+    border: 1px solid var(--graphite-color);
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+}
+
+.sketch-table th {
+    background-color: rgba(14, 42, 92, 0.05);
+    font-weight: 700;
+}
+
+.math-col {
+    background-color: rgba(209, 40, 40, 0.03);
+}
+
+.math-row {
+    background-color: rgba(209, 40, 40, 0.03);
+}
+
+.equilibrium-cell {
+    background-color: var(--highlighter-color);
+    font-weight: 700;
+}
+
+/* Doodles de dibujo en SVG */
+.svg-doodle {
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.05));
+    margin-top: 0.5rem;
+}
+
+.svg-text {
+    font-family: var(--font-handwritten);
+    font-size: 14px;
+    fill: var(--graphite-color);
+}
+
+.font-accent {
+    fill: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.font-blue {
+    fill: var(--ballpoint-blue);
+    color: var(--ballpoint-blue);
+}
+
+/* INTERACTIVIDAD - SIMULADOR */
+.interactive-simulator-container {
+    display: grid;
+    grid-template-columns: 1.1fr 1.3fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .interactive-simulator-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.matrix-inputs-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.matrix-input-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 6px;
+    margin: 1rem 0;
+}
+
+.grid-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px dashed var(--graphite-color);
+    border-radius: 4px;
+    background-color: rgba(14, 42, 92, 0.01);
+}
+
+.label-cell {
+    font-weight: 700;
+    background-color: rgba(14, 42, 92, 0.04);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.row-label-cell {
+    font-weight: 700;
+    justify-content: flex-start;
+    font-size: 0.95rem;
+}
+
+.input-cell {
+    background-color: #FAF8F5;
+}
+
+.mat-input {
+    width: 100%;
+    border: 1px solid var(--graphite-color);
+    background-color: #FFF;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+    outline: none;
+    color: var(--text-color);
+}
+
+.mat-input:focus {
+    border-color: var(--accent-color);
+    background-color: var(--highlighter-color);
+}
+
+/* Stats visualizer */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.stat-box {
+    border: 1px solid var(--graphite-color);
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: center;
+    background-color: rgba(14, 42, 92, 0.02);
+}
+
+.stat-box.full-width {
+    grid-column: span 2;
+}
+
+.stat-val {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: var(--graphite-color);
+    line-height: 1.2;
+    margin-top: 0.25rem;
+}
+
+/* Gráfico SVG */
+.chart-container {
+    background-color: #FFF;
+    border: 1px solid var(--graphite-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
+.svg-graph {
+    width: 100%;
+    height: auto;
+    background-color: #FAF8F5;
+}
+
+.solver-explanation-box {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: rgba(209, 40, 40, 0.03);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 4px;
+    font-size: 1.1rem;
+}
+
+/* Pasos de reducción */
+.reduction-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.step-card {
+    flex: 1;
+    min-width: 120px;
+    border: 1px solid var(--graphite-color);
+    border-radius: 6px;
+    padding: 0.75rem;
+    background-color: rgba(14, 42, 92, 0.01);
+}
+
+.step-card h5 {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.step-arrow {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+@media (max-width: 600px) {
+    .reduction-steps {
+        flex-direction: column;
+    }
+    .step-arrow {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+}
+
+/* Clases de Utilidad */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.small-text { font-size: 1.15rem; line-height: 1.4; }
+
+/* Matrices Pequeñas en Dominancia */
+.mini-matrix-table {
+    width: 100%;
+    font-size: 1.05rem;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+.mini-matrix-table th, .mini-matrix-table td {
+    border: 1px solid var(--graphite-color);
+    padding: 3px 5px;
+    text-align: center;
+}
+.mini-matrix-table th {
+    background-color: rgba(14, 42, 92, 0.03);
+}
+.struck-out {
+    text-decoration: line-through;
+    color: var(--accent-color);
+    background-color: rgba(209, 40, 40, 0.05);
+}
+
+/* Footer */
+.presentation-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(14, 42, 92, 0.15);
+    font-size: 0.95rem;
+    color: var(--graphite-color);
+}
