@@ -33,6 +33,20 @@ document.addEventListener('DOMContentLoaded', () => {
         5: { current: 1, max: 4, names: ["Planteamiento", "Reducción por Dominancia", "Estrategias Mixtas", "Interpretación"] }
     };
 
+    let sec3Stats = {
+        crs: 27,
+        sot: 12,
+        fls: 23,
+        tklw: 16
+    };
+    let sec3Cells = {
+        m11: 4,
+        m12: 11,
+        m21: -11,
+        m22: -4
+    };
+    let sec3IsFictional = false;
+
     function updateStepUI(secNum) {
         const state = sectionSteps[secNum];
         const indicator = document.getElementById(`step-indicator-${secNum}`);
@@ -51,6 +65,70 @@ document.addEventListener('DOMContentLoaded', () => {
                     content.classList.remove('active');
                 }
             });
+        }
+
+        if (secNum === 3) {
+            const m11Input = document.getElementById('sec3-m11');
+            const m12Input = document.getElementById('sec3-m12');
+            const m21Input = document.getElementById('sec3-m21');
+            const m22Input = document.getElementById('sec3-m22');
+            const fictionalBtn = document.getElementById('fictional-sec3-btn');
+
+            if (m11Input && m12Input && m21Input && m22Input) {
+                if (state.current === 1) {
+                    m11Input.readOnly = true;
+                    m12Input.readOnly = true;
+                    m21Input.readOnly = true;
+                    m22Input.readOnly = true;
+
+                    if (fictionalBtn) fictionalBtn.style.display = "none";
+                    m11Input.type = "text";
+                    m12Input.type = "text";
+                    m21Input.type = "text";
+                    m22Input.type = "text";
+
+                    m11Input.style.fontSize = "0.82rem";
+                    m12Input.style.fontSize = "0.82rem";
+                    m21Input.style.fontSize = "0.82rem";
+                    m22Input.style.fontSize = "0.82rem";
+
+                    m11Input.style.padding = "4px 2px";
+                    m12Input.style.padding = "4px 2px";
+                    m21Input.style.padding = "4px 2px";
+                    m22Input.style.padding = "4px 2px";
+
+                    m11Input.value = `${sec3Stats.crs} - ${sec3Stats.fls} = ${sec3Stats.crs - sec3Stats.fls}`;
+                    m12Input.value = `${sec3Stats.crs} - ${sec3Stats.tklw} = ${sec3Stats.crs - sec3Stats.tklw}`;
+                    m21Input.value = `${sec3Stats.sot} - ${sec3Stats.fls} = ${sec3Stats.sot - sec3Stats.fls}`;
+                    m22Input.value = `${sec3Stats.sot} - ${sec3Stats.tklw} = ${sec3Stats.sot - sec3Stats.tklw}`;
+                } else {
+                    m11Input.readOnly = false;
+                    m12Input.readOnly = false;
+                    m21Input.readOnly = false;
+                    m22Input.readOnly = false;
+
+                    if (fictionalBtn) fictionalBtn.style.display = "block";
+                    m11Input.type = "number";
+                    m12Input.type = "number";
+                    m21Input.type = "number";
+                    m22Input.type = "number";
+
+                    m11Input.style.fontSize = "";
+                    m12Input.style.fontSize = "";
+                    m21Input.style.fontSize = "";
+                    m22Input.style.fontSize = "";
+
+                    m11Input.style.padding = "";
+                    m12Input.style.padding = "";
+                    m21Input.style.padding = "";
+                    m22Input.style.padding = "";
+
+                    m11Input.value = sec3Cells.m11;
+                    m12Input.value = sec3Cells.m12;
+                    m21Input.value = sec3Cells.m21;
+                    m22Input.value = sec3Cells.m22;
+                }
+            }
         }
     }
 
@@ -517,37 +595,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* ==========================================================================
-       6. SOLVER DE LA SECCIÓN 3: ESPAÑA VS ARGENTINA
-       ========================================================================== */
     function calculateSection3() {
-        const m11 = parseFloat(document.getElementById('sec3-m11').value) || 0;
-        const m12 = parseFloat(document.getElementById('sec3-m12').value) || 0;
-        const m21 = parseFloat(document.getElementById('sec3-m21').value) || 0;
-        const m22 = parseFloat(document.getElementById('sec3-m22').value) || 0;
+        const m11Input = document.getElementById('sec3-m11');
+        const m12Input = document.getElementById('sec3-m12');
+        const m21Input = document.getElementById('sec3-m21');
+        const m22Input = document.getElementById('sec3-m22');
 
-        const sol = solve2x2(m11, m12, m21, m22);
+        if (sec3Cells.m11 === 8 && sec3Cells.m12 === 46 && sec3Cells.m21 === 68 && sec3Cells.m22 === 15) {
+            sec3IsFictional = true;
+        }
+
+        const heartEl = document.getElementById('footer-heart');
+        if (heartEl) {
+            const isSection3Active = document.getElementById('section-3')?.classList.contains('active');
+            heartEl.style.display = (sec3IsFictional && isSection3Active) ? 'inline' : 'none';
+        }
+
+        if (m11Input && m12Input && m21Input && m22Input) {
+            if (sectionSteps[3].current === 1) {
+                m11Input.value = `${sec3Stats.crs} - ${sec3Stats.fls} = ${sec3Stats.crs - sec3Stats.fls}`;
+                m12Input.value = `${sec3Stats.crs} - ${sec3Stats.tklw} = ${sec3Stats.crs - sec3Stats.tklw}`;
+                m21Input.value = `${sec3Stats.sot} - ${sec3Stats.fls} = ${sec3Stats.sot - sec3Stats.fls}`;
+                m22Input.value = `${sec3Stats.sot} - ${sec3Stats.tklw} = ${sec3Stats.sot - sec3Stats.tklw}`;
+            } else {
+                m11Input.value = sec3Cells.m11;
+                m12Input.value = sec3Cells.m12;
+                m21Input.value = sec3Cells.m21;
+                m22Input.value = sec3Cells.m22;
+            }
+        }
+
+        const sol = solve2x2(sec3Cells.m11, sec3Cells.m12, sec3Cells.m21, sec3Cells.m22);
 
         // Paso 2: Punto de Silla
         const step2Div = document.getElementById('sec3-step2-results');
         if (step2Div) {
             step2Div.replaceChildren();
-            const minRow1 = Math.min(m11, m12);
-            const minRow2 = Math.min(m21, m22);
-            const maxCol1 = Math.max(m11, m21);
-            const maxCol2 = Math.max(m12, m22);
+            const minRow1 = Math.min(sec3Cells.m11, sec3Cells.m12);
+            const minRow2 = Math.min(sec3Cells.m21, sec3Cells.m22);
+            const maxCol1 = Math.max(sec3Cells.m11, sec3Cells.m21);
+            const maxCol2 = Math.max(sec3Cells.m12, sec3Cells.m22);
 
             step2Div.appendChild(createMathParagraph([
                 { tag: "strong", text: "Mínimos de Filas (España):" }, { tag: "br", text: "" },
-                `- Ataque Bandas: mín(${m11}, ${m12}) = ${minRow1}`, { tag: "br", text: "" },
-                `- Remates a Puerta: mín(${m21}, ${m22}) = ${minRow2}`, { tag: "br", text: "" },
+                `- Ataque Centros: mín(${sec3Cells.m11}, ${sec3Cells.m12}) = ${minRow1}`, { tag: "br", text: "" },
+                `- Remates: mín(${sec3Cells.m21}, ${sec3Cells.m22}) = ${minRow2}`, { tag: "br", text: "" },
                 `➔ Maximin = ${sol.maximin.toFixed(1)}`
             ]));
 
             step2Div.appendChild(createMathParagraph([
                 { tag: "strong", text: "Máximos de Columnas (Argentina):" }, { tag: "br", text: "" },
-                `- Presión Física: máx(${m11}, ${m21}) = ${maxCol1}`, { tag: "br", text: "" },
-                `- Quites Limpios: máx(${m12}, ${m22}) = ${maxCol2}`, { tag: "br", text: "" },
+                `- Presión Física: máx(${sec3Cells.m11}, ${sec3Cells.m21}) = ${maxCol1}`, { tag: "br", text: "" },
+                `- Quites Limpios: máx(${sec3Cells.m12}, ${sec3Cells.m22}) = ${maxCol2}`, { tag: "br", text: "" },
                 `➔ Minimax = ${sol.minimax.toFixed(1)}`
             ]));
         }
@@ -564,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 step3Div.appendChild(createMathParagraph([
                     { tag: "strong", text: "Cálculos mediante indiferencia:" }, { tag: "br", text: "" },
-                    `- España (p) Bandas: `, { tag: "strong", text: `p* = ${sol.p_opt.toFixed(3)} (${(sol.p_opt * 100).toFixed(1)}%)` }, { tag: "br", text: "" },
+                    `- España (p) Centros: `, { tag: "strong", text: `p* = ${sol.p_opt.toFixed(3)} (${(sol.p_opt * 100).toFixed(1)}%)` }, { tag: "br", text: "" },
                     `- Argentina (q) Presión Física: `, { tag: "strong", text: `q* = ${sol.q_opt.toFixed(3)} (${(sol.q_opt * 100).toFixed(1)}%)` }
                 ]));
             }
@@ -587,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     { tag: "i", text: "V" }, " = ", 
                     { tag: "i", text: "a" }, { tag: "sub", text: "11" }, "·", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, " + ",
                     { tag: "i", text: "a" }, { tag: "sub", text: "21" }, "·(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
-                    " = ", `${m11.toFixed(1)}·${sol.p_opt.toFixed(3)} + ${m21.toFixed(1)}·${(1 - sol.p_opt).toFixed(3)}`, { tag: "br" },
+                    " = ", `${sec3Cells.m11.toFixed(1)}·${sol.p_opt.toFixed(3)} + ${sec3Cells.m21.toFixed(1)}·${(1 - sol.p_opt).toFixed(3)}`, { tag: "br" },
                     " = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             }
@@ -1056,7 +1155,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Agregar listeners a inputs
     document.querySelectorAll('.sec2-input').forEach(i => i.addEventListener('input', calculateSection2));
-    document.querySelectorAll('.sec3-input').forEach(i => i.addEventListener('input', calculateSection3));
+    
+    // Listeners para los inputs de estadísticas en la parte izquierda
+    const sec3StatInputs = ['sec3-crs', 'sec3-sot', 'sec3-fls', 'sec3-tklw'];
+    sec3StatInputs.forEach(id => {
+        document.getElementById(id)?.addEventListener('input', () => {
+            sec3IsFictional = false;
+            
+            const crs = parseFloat(document.getElementById('sec3-crs')?.value) || 27;
+            const sot = parseFloat(document.getElementById('sec3-sot')?.value) || 12;
+            const fls = parseFloat(document.getElementById('sec3-fls')?.value) || 23;
+            const tklw = parseFloat(document.getElementById('sec3-tklw')?.value) || 16;
+
+            sec3Stats.crs = crs;
+            sec3Stats.sot = sot;
+            sec3Stats.fls = fls;
+            sec3Stats.tklw = tklw;
+
+            sec3Cells.m11 = crs - fls;
+            sec3Cells.m12 = crs - tklw;
+            sec3Cells.m21 = sot - fls;
+            sec3Cells.m22 = sot - tklw;
+
+            calculateSection3();
+        });
+    });
+
+    document.querySelectorAll('.sec3-input').forEach(i => {
+        i.addEventListener('input', (e) => {
+            if (sectionSteps[3].current > 1) {
+                sec3IsFictional = false;
+                const id = e.target.id;
+                const val = parseFloat(e.target.value) || 0;
+                if (id === 'sec3-m11') sec3Cells.m11 = val;
+                if (id === 'sec3-m12') sec3Cells.m12 = val;
+                if (id === 'sec3-m21') sec3Cells.m21 = val;
+                if (id === 'sec3-m22') sec3Cells.m22 = val;
+                calculateSection3();
+            }
+        });
+    });
+
     document.querySelectorAll('.sec4-input').forEach(i => i.addEventListener('input', calculateSection4));
     document.querySelectorAll('.sec5-input').forEach(i => i.addEventListener('input', calculateSection5));
 
@@ -1070,10 +1209,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('reset-sec3-btn')?.addEventListener('click', () => {
-        document.getElementById('sec3-m11').value = 4;
-        document.getElementById('sec3-m12').value = 11;
-        document.getElementById('sec3-m21').value = 15;
-        document.getElementById('sec3-m22').value = -4;
+        sec3IsFictional = false;
+        sec3Stats.crs = 27;
+        sec3Stats.sot = 12;
+        sec3Stats.fls = 23;
+        sec3Stats.tklw = 16;
+
+        sec3Cells.m11 = 4;
+        sec3Cells.m12 = 11;
+        sec3Cells.m21 = -11;
+        sec3Cells.m22 = -4;
+
+        const crsIn = document.getElementById('sec3-crs');
+        const sotIn = document.getElementById('sec3-sot');
+        const flsIn = document.getElementById('sec3-fls');
+        const tklwIn = document.getElementById('sec3-tklw');
+
+        if (crsIn) crsIn.value = 27;
+        if (sotIn) sotIn.value = 12;
+        if (flsIn) flsIn.value = 23;
+        if (tklwIn) tklwIn.value = 16;
+
+        calculateSection3();
+    });
+
+    document.getElementById('fictional-sec3-btn')?.addEventListener('click', () => {
+        sec3IsFictional = true;
+        sec3Cells.m11 = 8;
+        sec3Cells.m12 = 46;
+        sec3Cells.m21 = 68;
+        sec3Cells.m22 = 15;
         calculateSection3();
     });
 
@@ -1104,5 +1269,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Inicializar todo al cargar
+    for (let s = 1; s <= 5; s++) {
+        updateStepUI(s);
+    }
     calculateAll();
 });

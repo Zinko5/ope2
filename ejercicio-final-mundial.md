@@ -17,7 +17,7 @@ La matriz representa el **balance táctico neto** para España según la interac
 | | $B_1$: Presión Física | $B_2$: Quites / Repliegue |
 | :--- | :---: | :---: |
 | **$A_1$**: Ataque por Bandas | $+4$ | $+11$ |
-| **$A_2$**: Remates a Puerta | $+15$ | $-4$ |
+| **$A_2$**: Remates a Puerta | $-11$ | $-4$ |
 
 ---
 
