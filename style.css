@@ -733,3 +733,14 @@ p {
     display: block;
 }
 
+input.struck-out {
+    text-decoration: line-through !important;
+    opacity: 0.8 !important;
+    color: #999 !important;
+}
+
+.matrix-input-grid .struck-out {
+    text-decoration: line-through;
+    opacity: 0.8 !important;
+}
+

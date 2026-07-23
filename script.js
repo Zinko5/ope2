@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return { maximin, minimax, hasSaddlePoint, p_opt, q_opt, v };
     }
 
-    function drawGraph(svgId, a11, a12, a21, a22, p_opt, v) {
+    function drawGraph(svgId, a11, a12, a21, a22, p_opt, v, xLabel = "Probabilidad p", yLabel = "Pago Esperado (VE)", leg1 = "VE(b1)", leg2 = "VE(b2)") {
         const svg = document.getElementById(svgId);
         if (!svg) return;
         svg.replaceChildren();
@@ -440,14 +440,14 @@ document.addEventListener('DOMContentLoaded', () => {
         labelXAxis.setAttribute("y", (height - 6).toString());
         labelXAxis.setAttribute("text-anchor", "middle");
         labelXAxis.setAttribute("class", "svg-text font-accent");
-        labelXAxis.textContent = "Probabilidad p (Ataque Bandas)";
+        labelXAxis.textContent = xLabel;
         svg.appendChild(labelXAxis);
 
         const labelYAxis = document.createElementNS(ns, "text");
         labelYAxis.setAttribute("x", "10");
         labelYAxis.setAttribute("y", "18");
         labelYAxis.setAttribute("class", "svg-text");
-        labelYAxis.textContent = "Pago Esperado (VE)";
+        labelYAxis.textContent = yLabel;
         svg.appendChild(labelYAxis);
 
         // Extremidades de probabilidad
@@ -472,15 +472,50 @@ document.addEventListener('DOMContentLoaded', () => {
         legend1.setAttribute("x", (getX(0.15)).toString());
         legend1.setAttribute("y", (getY(a21 * 0.85 + a11 * 0.15) - 8).toString());
         legend1.setAttribute("class", "svg-text font-blue");
-        legend1.textContent = "VE(b1)";
+        legend1.textContent = leg1;
         svg.appendChild(legend1);
 
         const legend2 = document.createElementNS(ns, "text");
         legend2.setAttribute("x", (getX(0.85)).toString());
         legend2.setAttribute("y", (getY(a22 * 0.15 + a12 * 0.85) - 8).toString());
         legend2.setAttribute("class", "svg-text font-accent");
-        legend2.textContent = "VE(b2)";
+        legend2.textContent = leg2;
         svg.appendChild(legend2);
+    }
+
+    function updateSidebarStrikethrough(secNum, rowElim, colElim) {
+        const grid = document.querySelector(`#section-${secNum} .matrix-input-grid`);
+        if (!grid) return;
+
+        // Clear existing strikethrough classes
+        grid.querySelectorAll('.struck-out').forEach(el => el.classList.remove('struck-out'));
+        grid.querySelectorAll('input').forEach(el => el.classList.remove('struck-out'));
+
+        // If row is eliminated (0, 1, 2)
+        if (rowElim !== -1) {
+            const startIndex = (rowElim + 1) * 4;
+            for (let i = 0; i < 4; i++) {
+                const cell = grid.children[startIndex + i];
+                if (cell) {
+                    cell.classList.add('struck-out');
+                    const input = cell.querySelector('input');
+                    if (input) input.classList.add('struck-out');
+                }
+            }
+        }
+
+        // If col is eliminated (0, 1, 2)
+        if (colElim !== -1) {
+            const colIndex = colElim + 1;
+            for (let r = 0; r < 4; r++) {
+                const cell = grid.children[r * 4 + colIndex];
+                if (cell) {
+                    cell.classList.add('struck-out');
+                    const input = cell.querySelector('input');
+                    if (input) input.classList.add('struck-out');
+                }
+            }
+        }
     }
 
     /* ==========================================================================
@@ -572,12 +607,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     { tag: "i", text: "V" }, " = maximin = minimax = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             } else {
+                const term1 = m11 * sol.p_opt;
+                const term2 = m21 * (1 - sol.p_opt);
                 calcParts = [
                     { tag: "strong", text: "Cálculo: " }, { tag: "br" },
                     { tag: "i", text: "V" }, " = ", 
-                    { tag: "i", text: "a" }, { tag: "sub", text: "11" }, "·", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, " + ",
-                    { tag: "i", text: "a" }, { tag: "sub", text: "21" }, "·(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
-                    " = ", `${m11.toFixed(1)}·${sol.p_opt.toFixed(3)} + ${m21.toFixed(1)}·${(1 - sol.p_opt).toFixed(3)}`, { tag: "br" },
+                    { tag: "i", text: "a" }, { tag: "sub", text: "11" }, "(", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ") + ",
+                    { tag: "i", text: "a" }, { tag: "sub", text: "21" }, "(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
+                    " = ", `${m11.toFixed(1)}(${sol.p_opt.toFixed(3)}) + ${m21.toFixed(1)}(${(1 - sol.p_opt).toFixed(3)})`, { tag: "br" },
+                    " = ", `${term1.toFixed(2)} + ${term2.toFixed(2)}`, { tag: "br" },
                     " = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             }
@@ -681,12 +719,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     { tag: "i", text: "V" }, " = maximin = minimax = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             } else {
+                const term1 = sec3Cells.m11 * sol.p_opt;
+                const term2 = sec3Cells.m21 * (1 - sol.p_opt);
                 calcParts = [
                     { tag: "strong", text: "Cálculo: " }, { tag: "br" },
                     { tag: "i", text: "V" }, " = ", 
-                    { tag: "i", text: "a" }, { tag: "sub", text: "11" }, "·", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, " + ",
-                    { tag: "i", text: "a" }, { tag: "sub", text: "21" }, "·(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
-                    " = ", `${sec3Cells.m11.toFixed(1)}·${sol.p_opt.toFixed(3)} + ${sec3Cells.m21.toFixed(1)}·${(1 - sol.p_opt).toFixed(3)}`, { tag: "br" },
+                    { tag: "i", text: "a" }, { tag: "sub", text: "11" }, "(", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ") + ",
+                    { tag: "i", text: "a" }, { tag: "sub", text: "21" }, "(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
+                    " = ", `${sec3Cells.m11.toFixed(1)}(${sol.p_opt.toFixed(3)}) + ${sec3Cells.m21.toFixed(1)}(${(1 - sol.p_opt).toFixed(3)})`, { tag: "br" },
+                    " = ", `${term1.toFixed(2)} + ${term2.toFixed(2)}`, { tag: "br" },
                     " = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             }
@@ -698,12 +739,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 { tag: "strong", text: `Valor del Juego: V = ${sol.v.toFixed(2)}` }
             ]));
             step4Div.appendChild(calcParagraph);
+
+            let strategyExplanation = "";
+            const pPct = (sol.p_opt * 100).toFixed(1);
+            const pRestPct = ((1 - sol.p_opt) * 100).toFixed(1);
+            const qPct = (sol.q_opt * 100).toFixed(1);
+            const qRestPct = ((1 - sol.q_opt) * 100).toFixed(1);
+
+            if (sol.hasSaddlePoint) {
+                const A_opt_label = sol.p_opt === 1 ? "dar centros (A1)" : "probar remates directos (A2)";
+                const B_opt_label = sol.q_opt === 1 ? "faltas tácticas (B1)" : "barridas/quites de balón (B2)";
+                strategyExplanation = `España debe jugar la estrategia pura de ${A_opt_label} en un 100% de las veces, mientras que Argentina debe concentrar el 100% de su respuesta táctica en ${B_opt_label}.`;
+            } else {
+                strategyExplanation = `España debe alternar entre dar centros (A1) un ${pPct}% de las veces y probar remates directos (A2) en un ${pRestPct}%, mientras que Argentina debe distribuir su estrategia defensiva entre cometer faltas tácticas (B1) un ${qPct}% y realizar barridas/quites (B2) en un ${qRestPct}%.`;
+            }
+
             step4Div.appendChild(createMathParagraph([
-                sol.v > 0 
-                ? "El dominio táctico favorece a España. Argentina debe ser sumamente cautelosa y no depender únicamente de un tipo de defensa." 
-                : "El dominio táctico favorece a Argentina en su capacidad de bloquear eficientemente los embates españoles."
+                sol.v > 0 ? "El dominio táctico favorece a España. " : "El dominio táctico favorece a Argentina. ",
+                strategyExplanation
             ]));
         }
+
+        drawGraph('sec3-graph', sec3Cells.m11, sec3Cells.m12, sec3Cells.m21, sec3Cells.m22, sol.p_opt, sol.v, "Probabilidad p (Ataque Centros)", "Pago Esperado (VE)", "VE(B1)", "VE(B2)");
     }
 
     /* ==========================================================================
@@ -894,12 +951,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     { tag: "i", text: "V" }, " = maximin = minimax = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             } else {
+                const term1 = f11 * sol.p_opt;
+                const term2 = f21 * (1 - sol.p_opt);
                 calcParts = [
                     { tag: "strong", text: "Cálculo: " }, { tag: "br" },
                     { tag: "i", text: "V" }, " = ", 
-                    { tag: "i", text: "f" }, { tag: "sub", text: "11" }, "·", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, " + ",
-                    { tag: "i", text: "f" }, { tag: "sub", text: "21" }, "·(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
-                    " = ", `${f11.toFixed(1)}·${sol.p_opt.toFixed(3)} + ${f21.toFixed(1)}·${(1 - sol.p_opt).toFixed(3)}`, { tag: "br" },
+                    { tag: "i", text: "f" }, { tag: "sub", text: "11" }, "(", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ") + ",
+                    { tag: "i", text: "f" }, { tag: "sub", text: "21" }, "(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
+                    " = ", `${f11.toFixed(1)}(${sol.p_opt.toFixed(3)}) + ${f21.toFixed(1)}(${(1 - sol.p_opt).toFixed(3)})`, { tag: "br" },
+                    " = ", `${term1.toFixed(2)} + ${term2.toFixed(2)}`, { tag: "br" },
                     " = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             }
@@ -917,6 +977,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             step4Div.appendChild(document.createTextNode("La matriz no se redujo a una forma exacta 2x2. Prueba ingresando otros valores en el Paso 1."));
         }
+        const currentStep = sectionSteps[4].current;
+        let rElimToPass = -1;
+        let cElimToPass = -1;
+        if (currentStep === 2) {
+            rElimToPass = rowEliminated;
+        } else if (currentStep >= 3) {
+            rElimToPass = rowEliminated;
+            cElimToPass = colEliminated;
+        }
+        updateSidebarStrikethrough(4, rElimToPass, cElimToPass);
     }
 
     /* ==========================================================================
@@ -1084,17 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const sol = solve2x2(f11, f12, f21, f22);
 
-            step3Div.appendChild(createMathParagraph([
-                { tag: "strong", text: "Matriz Reducida Resultante (2x2):" }
-            ]));
-
-            const rTableContainer = document.createElement('div');
-            renderPayoffMatrix2x2(
-                rTableContainer, f11, f12, f21, f22, 
-                ["Pumakatari", rowLabels[finalRows[0]], rowLabels[finalRows[1]]],
-                ["Minibuses", colLabels[finalCols[0]], colLabels[finalCols[1]]]
-            );
-            step3Div.appendChild(rTableContainer);
+            // (La tabla de la matriz reducida se omitió aquí para evitar redundancia con el widget lateral derecho)
 
             step3Div.appendChild(createMathParagraph([
                 { tag: "strong", text: "Cálculos de Probabilidades Óptimas:" }, { tag: "br", text: "" },
@@ -1115,12 +1175,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     { tag: "i", text: "V" }, " = maximin = minimax = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             } else {
+                const term1 = f11 * sol.p_opt;
+                const term2 = f21 * (1 - sol.p_opt);
                 calcParts = [
                     { tag: "strong", text: "Cálculo: " }, { tag: "br" },
                     { tag: "i", text: "V" }, " = ", 
-                    { tag: "i", text: "f" }, { tag: "sub", text: "11" }, "·", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, " + ",
-                    { tag: "i", text: "f" }, { tag: "sub", text: "21" }, "·(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
-                    " = ", `${f11.toFixed(1)}·${sol.p_opt.toFixed(3)} + ${f21.toFixed(1)}·${(1 - sol.p_opt).toFixed(3)}`, { tag: "br" },
+                    { tag: "i", text: "f" }, { tag: "sub", text: "11" }, "(", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ") + ",
+                    { tag: "i", text: "f" }, { tag: "sub", text: "21" }, "(1 - ", { tag: "i", text: "p" }, { tag: "sup", text: "*" }, ")", { tag: "br" },
+                    " = ", `${f11.toFixed(1)}(${sol.p_opt.toFixed(3)}) + ${f21.toFixed(1)}(${(1 - sol.p_opt).toFixed(3)})`, { tag: "br" },
+                    " = ", `${term1.toFixed(2)} + ${term2.toFixed(2)}`, { tag: "br" },
                     " = ", { tag: "strong", text: sol.v.toFixed(2) }
                 ];
             }
@@ -1138,9 +1201,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Para implementar una probabilidad de, por ejemplo, 1/7, el administrador de rutas puede usar una ruleta con 7 divisiones al inicio del semestre o sortear un día a la semana para la estrategia comercial."
             ]));
 
+            // Recortar texto largo de las etiquetas para el gráfico
+            const shortRow0 = rowLabels[finalRows[0]].split(':')[1]?.trim() || rowLabels[finalRows[0]];
+            const shortCol0 = colLabels[finalCols[0]].split(':')[1]?.trim() || colLabels[finalCols[0]];
+            const shortCol1 = colLabels[finalCols[1]].split(':')[1]?.trim() || colLabels[finalCols[1]];
+
+            drawGraph('sec5-graph', f11, f12, f21, f22, sol.p_opt, sol.v, `Probabilidad p (${shortRow0})`, "Diferencial Cuota (%)", `VE(${shortCol0})`, `VE(${shortCol1})`);
+
         } else {
             step3Div.appendChild(document.createTextNode("La matriz no se pudo reducir exactamente a 2x2. Modifica los números iniciales."));
+            const svg = document.getElementById('sec5-graph');
+            if (svg) svg.replaceChildren(); // Limpiar el gráfico si no es 2x2
         }
+        const currentStep = sectionSteps[5].current;
+        let rElimToPass = -1;
+        let cElimToPass = -1;
+        if (currentStep >= 2) {
+            rElimToPass = rowEliminated;
+            cElimToPass = colEliminated;
+        }
+        updateSidebarStrikethrough(5, rElimToPass, cElimToPass);
     }
 
     /* ==========================================================================
