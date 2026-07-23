@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoría de Juegos: Estrategias Mixtas en el Deporte y la Empresa</title>
+    <title>Teoría de Juegos: Guía Interactiva y Educativa</title>
     <meta name="description"
-        content="Una exploración interactiva estilo sketch-note sobre teoría de juegos, estrategias mixtas y la resolución del clásico Bolívar vs. The Strongest.">
+        content="Una exploración interactiva y visual sobre teoría de juegos, estrategias mixtas y resolución de ejercicios paso a paso.">
 
     <!-- Google Fonts: Patrick Hand para manuscrito, JetBrains Mono para valores y fórmulas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,8 @@
     <div class="notebook-container">
         <!-- Encabezado estilo Doodle -->
         <header class="presentation-header">
-            <h1 id="main-title" class="handwritten-title">Teoría de Juegos: Estrategias Mixtas ✏️</h1>
-            <p class="subtitle">Una exploración visual y matemática de las decisiones estratégicas</p>
+            <h1 id="main-title" class="handwritten-title">Teoría de Juegos: Resoluciones Dinámicas ✏️</h1>
+            <p class="subtitle">Aprende, experimenta y edita los valores para ver la matemática en tiempo real</p>
         </header>
 
         <!-- Pestañas de Navegación estilo Fichas de Cuaderno (Portada + 5 Secciones + Cierre) -->
@@ -36,23 +36,23 @@
             </button>
             <button class="tab-btn" data-target="section-1" id="tab-1">
                 <span class="tab-number">1</span>
-                <span class="tab-name">Introducción</span>
+                <span class="tab-name">Introducción y Teoría</span>
             </button>
             <button class="tab-btn" data-target="section-2" id="tab-2">
                 <span class="tab-number">2</span>
-                <span class="tab-name">Cuota de Mercado</span>
+                <span class="tab-name">Clásico Paceño (Fútbol)</span>
             </button>
             <button class="tab-btn" data-target="section-3" id="tab-3">
                 <span class="tab-number">3</span>
-                <span class="tab-name">El Clásico Paceño</span>
+                <span class="tab-name">Final Mundial (ESP vs. ARG)</span>
             </button>
             <button class="tab-btn" data-target="section-4" id="tab-4">
                 <span class="tab-number">4</span>
-                <span class="tab-name">Resolución Interactiva</span>
+                <span class="tab-name">Reducción de Matrices</span>
             </button>
             <button class="tab-btn" data-target="section-5" id="tab-5">
                 <span class="tab-number">5</span>
-                <span class="tab-name">Dominancia y Más</span>
+                <span class="tab-name">Pumakatari vs. Minibuses</span>
             </button>
             <button class="tab-btn" data-target="section-cierre" id="tab-cierre">
                 <span class="tab-number">✖</span>
@@ -66,7 +66,7 @@
             <!-- PORTADA: PORTADA DE PRESENTACIÓN -->
             <section id="section-portada" class="presenter-section active">
                 <div class="tape-effect text-center">Teoría de Juegos de Suma Cero</div>
-                <div class="layout-asymmetric">
+                <div style="max-width: 800px; margin: 0 auto;">
                     <div class="card sketch-border main-content-card">
                         <h2 class="handwritten-h2" style="font-size: 2.2rem; text-align: center; margin-top: 1rem;">
                             Teoría de Juegos, Estrategias Mixtas y Reducción por Dominancia
@@ -91,524 +91,497 @@
                             </ul>
                         </div>
                     </div>
-
-                    <div class="doodle-sidebar">
-                        <div class="doodle-box text-center">
-                            <h4 class="handwritten-h4">¿Cómo navegar?</h4>
-                            <p class="small-text">Usa las pestañas superiores para avanzar entre los diferentes
-                                capítulos y el simulador interactivo en tiempo real.</p>
-                        </div>
-                        <div class="doodle-sketch">
-                            <!-- SVG Doodle: Lápiz y Flecha -->
-                            <svg viewBox="0 0 200 120" class="svg-doodle" width="100%">
-                                <!-- Lápiz doodle -->
-                                <path d="M20 90 L30 70 L90 20 L110 35 L50 85 L20 90" stroke="#333" stroke-width="2"
-                                    fill="#FFFFA5" stroke-linecap="round" />
-                                <path d="M20 90 L35 85 L30 70" stroke="#333" stroke-width="1.5" fill="none" />
-                                <path d="M90 20 L105 32" stroke="#333" stroke-width="1.5" />
-                                <!-- Flecha wobbly -->
-                                <path d="M120 70 Q 150 90 170 50" stroke="#D12828" stroke-width="2" fill="none" />
-                                <path d="M165 48 L172 51 L168 58" stroke="#D12828" stroke-width="2" fill="none" />
-                                <text x="110" y="105" class="svg-text font-accent">¡Empecemos!</text>
-                            </svg>
-                        </div>
-                    </div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 1: INTRODUCCIÓN Y UTILIDAD -->
+            <!-- SECCIÓN 1: INTRODUCCIÓN Y TEORÍA COMPLETA (PASO A PASO) -->
             <section id="section-1" class="presenter-section">
-                <div class="tape-effect text-center">Sección 1: Fundamentos y el Salto a la Teoría</div>
+                <div class="tape-effect text-center">Sección 1: Fundamentos y Conceptos Clave</div>
+                
+                <!-- Navegador por pasos de la Sección 1 -->
+                <div class="step-navigator">
+                    <button class="btn-handdrawn mini-btn prev-step-btn" data-section="1">← Atrás</button>
+                    <span class="step-indicator" id="step-indicator-1">Paso 1 de 5: Decisiones con Rivales</span>
+                    <button class="btn-handdrawn mini-btn next-step-btn" data-section="1">Adelante →</button>
+                </div>
+
                 <div class="layout-asymmetric">
                     <div class="card sketch-border main-content-card">
-                        <h2 class="handwritten-h2">1. Del Enfrentamiento con la Naturaleza al Rival Consciente</h2>
-                        <p>Hasta ahora en la teoría de decisiones tradicional, el tomador de decisiones se enfrentaba a
-                            la <strong>naturaleza</strong>: una entidad sin intenciones, sin malicia ni estrategia, que
-                            genera estados de forma probabilística (como el clima o la demanda del mercado).</p>
-
-                        <p class="highlight-yellow">
-                            <strong>El cambio de paradigma:</strong> La Teoría de Juegos entra en acción cuando la
-                            "incertidumbre" ya no es natural, sino que proviene de <strong>otro tomador de decisiones
-                                racional, consciente e inteligente</strong> que busca su propio beneficio (y muchas
-                            veces a expensas del nuestro).
-                        </p>
-
-                        <div class="note-sticker">
-                            <span class="sticker-pin">📌</span>
-                            <h3 class="handwritten-h3">Subjetividad y Utilidad</h3>
-                            <p>El análisis de utilidad introduce subjetividad. Diferentes personas con el mismo problema
-                                pueden y <em>deben</em> tomar decisiones distintas si sus circunstancias financieras o
-                                psicológicas son diferentes. ¡No es un fallo, es la realidad!</p>
-                        </div>
-                    </div>
-
-                    <div class="doodle-sidebar">
-                        <div class="doodle-box">
-                            <h4 class="handwritten-h4">¿Qué es un Juego de Suma Cero para 2 Personas?</h4>
-                            <ul class="doodle-list">
-                                <li><strong>Dos Jugadores:</strong> Jugador A y Jugador B.</li>
-                                <li><strong>Estrategias Finitas:</strong> Cada uno tiene opciones claras.</li>
-                                <li><strong>Simultaneidad:</strong> Eligen al mismo tiempo y a ciegas.</li>
-                                <li><strong>Conflicto Total:</strong> Lo que uno gana, el otro lo pierde exactamente:
-                                    <div class="mono-math"><i>Pago</i><sub>A</sub> + <i>Pago</i><sub>B</sub> = 0</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="doodle-sketch">
-                            <!-- SVG Doodle: Dos monitos de palo pensando -->
-                            <svg viewBox="0 0 200 120" class="svg-doodle" width="100%">
-                                <path d="M40 70 L40 50 M40 50 L30 40 M40 50 L50 40 M40 70 L30 85 M40 70 L50 85"
-                                    stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" />
-                                <circle cx="40" cy="30" r="10" stroke="#333" stroke-width="2" fill="none" />
-                                <path
-                                    d="M160 70 L160 50 M160 50 L150 40 M160 50 L170 40 M160 70 L150 85 M160 70 L170 85"
-                                    stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" />
-                                <circle cx="160" cy="30" r="10" stroke="#333" stroke-width="2" fill="none" />
-                                <!-- Flechas de pensamiento -->
-                                <path d="M 60 25 Q 100 5 140 25" stroke="#D12828" stroke-width="1.5" fill="none"
-                                    stroke-dasharray="4 4" />
-                                <text x="90" y="38" class="svg-text font-accent">¿Qué hará?</text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 2: CUOTA DE MERCADO -->
-            <section id="section-2" class="presenter-section">
-                <div class="tape-effect text-center">Sección 2: Competencia y Criterio Maximin/Minimax</div>
-                <div class="layout-asymmetric rev">
-                    <div class="doodle-sidebar">
-                        <div class="note-sticker yellow-sticker">
-                            <span class="sticker-pin">📌</span>
-                            <h3 class="handwritten-h3">Criterios de Decisión</h3>
-                            <p><strong>Maximin (Jugador A):</strong> Identifica el peor escenario para cada una de sus
-                                estrategias y elige la que maximiza ese mínimo (busca asegurar su piso de ganancia).</p>
-                            <p><strong>Minimax (Jugador B):</strong> Identifica el mejor escenario de ganancia para A
-                                (peor para B) en cada una de sus columnas y elige la columna que minimiza ese máximo.
+                        
+                        <!-- Paso 1: Introducción y Conflicto Racional -->
+                        <div class="step-content active" data-step="1">
+                            <h2 class="handwritten-h2">Paso 1: ¿Qué es la Teoría de Juegos?</h2>
+                            <p>A diferencia de la toma de decisiones clásica (donde el entorno es pasivo), en la <strong>Teoría de Juegos</strong> nos enfrentamos a un <strong>oponente inteligente</strong> que busca su propio beneficio, afectando directamente nuestros resultados.</p>
+                            <p class="highlight-yellow">
+                                <strong>Clave:</strong> Debemos predecir la estrategia del rival sabiendo que él también intenta predecir la nuestra.
                             </p>
                         </div>
 
-                        <div class="doodle-box">
-                            <h4 class="handwritten-h4">El Cacho Boliviano 🎲</h4>
-                            <p class="small-text">Como en el cacho boliviano, juegas con un razonamiento paranoico pero
-                                lógico: <em>"Si tiro esto, ¿qué hará el otro, pensando en contrarrestarme?"</em> El
-                                punto de equilibrio es el momento donde no hay jugadas sorpresa bajo la manga.</p>
-                        </div>
-                    </div>
-
-                    <div class="card sketch-border main-content-card">
-                        <h2 class="handwritten-h2">2. Competencia de Mercado: Entel vs. Tigo</h2>
-                        <p>Analizamos la competencia entre <strong>Entel Móvil</strong> (Jugador A) y <strong>Tigo
-                                Bolivia</strong> (Jugador B) en cuota de mercado. Cada uno tiene tres estrategias:
-                            <strong>1. Publicidad</strong>, <strong>2. Descuentos</strong> y <strong>3. Cobertura
-                                Rural</strong>.
-                        </p>
-
-                        <div class="table-container">
-                            <table class="sketch-table">
-                                <caption>Matriz de Pagos (Ganancia de Entel en Puntos de Cuota)</caption>
-                                <thead>
-                                    <tr>
-                                        <th>Entel \ Tigo</th>
-                                        <th>Publicidad (<i>b</i><sub>1</sub>)</th>
-                                        <th>Descuentos (<i>b</i><sub>2</sub>)</th>
-                                        <th>Cobertura (<i>b</i><sub>3</sub>)</th>
-                                        <th class="math-col">Mínimo Fila</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="highlighted-row">
-                                        <td><strong>Publicidad (<i>a</i><sub>1</sub>)</strong></td>
-                                        <td>4</td>
-                                        <td>3</td>
-                                        <td class="equilibrium-cell">2 (Eq)</td>
-                                        <td class="math-col font-accent">2 &larr; Maximin</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Descuentos (<i>a</i><sub>2</sub>)</strong></td>
-                                        <td>-1</td>
-                                        <td>4</td>
-                                        <td>1</td>
-                                        <td class="math-col">-1</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Cobertura (<i>a</i><sub>3</sub>)</strong></td>
-                                        <td>5</td>
-                                        <td>-2</td>
-                                        <td>0</td>
-                                        <td class="math-col">-2</td>
-                                    </tr>
-                                    <tr class="math-row">
-                                        <th>Máximo Columna</th>
-                                        <td>5</td>
-                                        <td>4</td>
-                                        <td class="font-accent">2 &larr; Minimax</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <!-- Paso 2: Suma Cero y Matriz de Pagos -->
+                        <div class="step-content" data-step="2">
+                            <h2 class="handwritten-h2">Paso 2: Suma Cero</h2>
+                            <p><strong>Juego de Suma Cero:</strong> Lo que un jugador gana, el otro lo pierde. La suma de utilidades es cero:</p>
+                            <div class="mono-math" style="text-align: center; font-size: 1.4rem; margin: 1rem 0;">
+                                Pago<sub>A</sub> + Pago<sub>B</sub> = 0
+                            </div>
+                            <p><strong>Matriz de Pagos:</strong> Tabla que resume los pagos del jugador de las filas (A). Los números positivos benefician a A, los negativos a B (columnas).</p>
                         </div>
 
-                        <p><strong>Punto de Equilibrio Puro:</strong> Como el valor <strong>Maximin (2)</strong> de
-                            Entel es igual al valor <strong>Minimax (2)</strong> de Tigo, existe un punto de equilibrio
-                            de estrategias puras en (<i>a</i><sub>1</sub>, <i>b</i><sub>3</sub>).</p>
-                        <p>Ningún jugador tiene incentivo a cambiar unilateralmente: si Entel cambia a descuentos, su
-                            pago cae a 1; si Tigo cambia a publicidad, la pérdida de Tigo sube a 4. El juego es estable.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 3: EL CLÁSICO PACEÑO Y ESTRATEGIA MIXTA -->
-            <section id="section-3" class="presenter-section">
-                <div class="tape-effect text-center">Sección 3: Inestabilidad y la Lógica del Fútbol</div>
-                <div class="layout-asymmetric">
-                    <div class="card sketch-border main-content-card">
-                        <h2 class="handwritten-h2">3. ¿Qué ocurre si no hay un Punto de Silla?</h2>
-                        <p>Cuando el valor Maximin es diferente al Minimax, no hay equilibrio puro. Si juegas siempre la
-                            misma estrategia, tu oponente se adaptará de inmediato y te destruirá. Aquí entra la
-                            <strong>Estrategia Mixta</strong>: aleatorizar las decisiones con probabilidades precisas.
-                        </p>
-
-                        <h3 class="handwritten-h3">Caso de Estudio: Bolívar vs. The Strongest ⚽</h3>
-                        <p>El Bolívar (Jugador Ofensivo, A) decide por dónde atacar: <strong>Bandas
-                                (<i>a</i><sub>1</sub>)</strong> o <strong>Centro (<i>a</i><sub>2</sub>)</strong>. The
-                            Strongest (Defensa, B) decide qué zona cubrir: <strong>Bandas
-                                (<i>b</i><sub>1</sub>)</strong> o <strong>Centro (<i>b</i><sub>2</sub>)</strong>.</p>
-
-                        <div class="table-container">
-                            <table class="sketch-table compact">
-                                <thead>
-                                    <tr>
-                                        <th>Bolívar \ Strongest</th>
-                                        <th>Defensa Bandas (<i>b</i><sub>1</sub>)</th>
-                                        <th>Defensa Centro (<i>b</i><sub>2</sub>)</th>
-                                        <th class="math-col">Mín Fila</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Ataque Bandas (<i>a</i><sub>1</sub>)</strong></td>
-                                        <td>1</td>
-                                        <td>6</td>
-                                        <td class="math-col font-accent">1 &larr; Maximin</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Ataque Centro (<i>a</i><sub>2</sub>)</strong></td>
-                                        <td>15</td>
-                                        <td>0</td>
-                                        <td class="math-col">0</td>
-                                    </tr>
-                                    <tr class="math-row">
-                                        <th>Máx Columna</th>
-                                        <td>15</td>
-                                        <td class="font-accent">6 &larr; Minimax</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <!-- Paso 3: Criterios Maximin y Minimax -->
+                        <div class="step-content" data-step="3">
+                            <h2 class="handwritten-h2">Paso 3: Criterios Conservadores</h2>
+                            <p>Buscamos protegernos del peor escenario posible:</p>
+                            <ul class="doodle-list">
+                                <li><strong>Maximin (Jugador A):</strong> Elige la estrategia que maximiza su ganancia mínima. Asegura su "suelo".</li>
+                                <li><strong>Minimax (Jugador B):</strong> Elige la columna que minimiza la ganancia máxima de A. Protege su "techo".</li>
+                            </ul>
                         </div>
 
-                        <p class="highlight-yellow">
-                            <strong>Análisis:</strong> Maximin (1) &ne; Minimax (6). Si Bolívar ataca siempre por las
-                            bandas, The Strongest defenderá bandas y ganará casi siempre (solo 1 yarda de avance). Si
-                            Bolívar ataca por el centro, The Strongest cubrirá el centro y Bolívar avanzará 0 yardas.
-                            Bolívar debe ser impredecible.
-                        </p>
+                        <!-- Paso 4: Punto de Silla (Equilibrio Puro) -->
+                        <div class="step-content" data-step="4">
+                            <h2 class="handwritten-h2">Paso 4: Punto de Silla</h2>
+                            <p>Ocurre cuando <span class="mono-math">Maximin = Minimax</span>. Este punto representa un equilibrio estable en <strong>estrategias puras</strong>; ninguno tiene incentivos para cambiar su decisión unilateralmente.</p>
+                        </div>
+
+                        <!-- Paso 5: Estrategias Mixtas y Dominancia -->
+                        <div class="step-content" data-step="5">
+                            <h2 class="handwritten-h2">Paso 5: Estrategias Mixtas</h2>
+                            <p>Si no hay punto de silla, debemos <strong>aleatorizar</strong> nuestras jugadas bajo ciertas probabilidades para no ser predecibles.</p>
+                            <p><strong>Dominancia:</strong> Consiste en eliminar estrategias que son peores en todo escenario frente a otras, simplificando la matriz antes de resolver.</p>
+                        </div>
+
                     </div>
 
                     <div class="doodle-sidebar">
-                        <div class="doodle-box">
-                            <h4 class="handwritten-h4">"El que juega siempre igual, pierde"</h4>
-                            <p class="small-text">Como la maestra que combina preguntas sorpresa y rutinarias para
-                                evitar que los alumnos estudien un solo formato, o el vendedor en la terminal que cambia
-                                de ruta para no saturar. La aleatorización no es 50-50, depende de los pagos.</p>
+                        <!-- Paso 1 Sidebar -->
+                        <div class="note-sticker yellow-sticker step-content active" data-step="1">
+                            <span class="sticker-pin">📌</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Concepto Rápido</h3>
+                            <p class="small-text">Si juegas de forma predecible, tu rival te neutralizará. Mezclar estrategias con probabilidades exactas anula su ventaja táctica.</p>
                         </div>
-
-                        <div class="doodle-sketch">
-                            <!-- Cancha de fútbol rápida en SVG -->
-                            <svg viewBox="0 0 200 120" class="svg-doodle" width="100%">
-                                <rect x="10" y="10" width="180" height="100" rx="5" stroke="#333" stroke-width="2"
-                                    fill="none" />
-                                <line x1="100" y1="10" x2="100" y2="110" stroke="#333" stroke-width="2" />
-                                <circle cx="100" cy="60" r="20" stroke="#333" stroke-width="2" fill="none" />
-                                <!-- Arquería -->
-                                <rect x="10" y="40" width="10" height="40" stroke="#333" stroke-width="1.5"
-                                    fill="none" />
-                                <rect x="180" y="40" width="10" height="40" stroke="#333" stroke-width="1.5"
-                                    fill="none" />
-                                <!-- Flechas de ataque -->
-                                <path d="M 110 30 Q 140 15 170 35" stroke="#0000FF" stroke-width="2"
-                                    stroke-linecap="round" fill="none" />
-                                <path d="M 110 60 L 170 60" stroke="#D12828" stroke-width="2" stroke-linecap="round"
-                                    fill="none" />
-                                <text x="115" y="25" class="svg-text font-blue">Bandas</text>
-                                <text x="115" y="75" class="svg-text font-accent">Centro</text>
-                            </svg>
+                        <!-- Paso 2 Sidebar -->
+                        <div class="note-sticker step-content" data-step="2">
+                            <span class="sticker-pin">🧮</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Fórmula: Suma Cero</h3>
+                            <div class="mono-math" style="font-size: 1.15rem; text-align: center; margin: 10px 0;">
+                                Pago<sub>A</sub> + Pago<sub>B</sub> = 0
+                            </div>
+                            <p class="small-text">Lo que gana un jugador es exactamente igual a lo que pierde el otro.</p>
+                        </div>
+                        <!-- Paso 3 Sidebar -->
+                        <div class="note-sticker yellow-sticker step-content" data-step="3">
+                            <span class="sticker-pin">🔎</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Criterios</h3>
+                            <div class="mono-math" style="font-size: 0.95rem; line-height: 1.3; margin: 10px 0;">
+                                Maximin: max<sub>i</sub> { min<sub>j</sub> { m<sub>ij</sub> } }<br>
+                                Minimax: min<sub>j</sub> { max<sub>i</sub> { m<sub>ij</sub> } }
+                            </div>
+                            <p class="small-text">Jugadores conservadores buscan el mejor de los peores escenarios.</p>
+                        </div>
+                        <!-- Paso 4 Sidebar -->
+                        <div class="note-sticker step-content" data-step="4">
+                            <span class="sticker-pin">⚖️</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Equilibrio Puro</h3>
+                            <div class="mono-math" style="font-size: 1.15rem; text-align: center; margin: 10px 0;">
+                                Maximin = Minimax = V
+                            </div>
+                            <p class="small-text">Cuando coinciden, el valor del juego es estable en estrategias puras.</p>
+                        </div>
+                        <!-- Paso 5 Sidebar -->
+                        <div class="note-sticker yellow-sticker step-content" data-step="5">
+                            <span class="sticker-pin">🎲</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Fórmulas Mixtas</h3>
+                            <p class="small-text" style="line-height: 1.3; font-size: 0.95rem;">
+                                <strong>A (p):</strong> (a<sub>22</sub> - a<sub>21</sub>) / D<br>
+                                <strong>B (q):</strong> (a<sub>22</sub> - a<sub>12</sub>) / D<br>
+                                <em>donde D = a<sub>11</sub> - a<sub>12</sub> - a<sub>21</sub> + a<sub>22</sub></em>
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 4: RESOLUCIÓN INTERACTIVA EN TIEMPO REAL -->
-            <section id="section-4" class="presenter-section">
-                <div class="tape-effect text-center">Sección 4: Resolución Matemática en Acción Interactiva</div>
-                <div class="interactive-simulator-container">
-
-                    <div class="card sketch-border matrix-inputs-card">
-                        <h2 class="handwritten-h2">4. Simulador del Clásico Paceño</h2>
-                        <p>Modifica los valores de avance en yardas (matriz de pagos) para ver en tiempo real cómo
-                            cambia la estrategia de Bolívar (<i>p</i><sup>*</sup>), The Strongest (<i>q</i><sup>*</sup>)
-                            y el valor del juego (<i>V</i>).</p>
-
-                        <div class="matrix-input-grid">
-                            <div class="grid-cell label-cell">Bolívar \ Strongest</div>
-                            <div class="grid-cell label-cell">Defensa Bandas (<i>b</i><sub>1</sub>)</div>
-                            <div class="grid-cell label-cell">Defensa Centro (<i>b</i><sub>2</sub>)</div>
-
-                            <div class="grid-cell row-label-cell">Ataque Bandas (<i>a</i><sub>1</sub>)</div>
-                            <div class="grid-cell input-cell">
-                                <input type="number" id="m-11" value="1" step="0.5" class="mono-font mat-input">
-                            </div>
-                            <div class="grid-cell input-cell">
-                                <input type="number" id="m-12" value="6" step="0.5" class="mono-font mat-input">
-                            </div>
-
-                            <div class="grid-cell row-label-cell">Ataque Centro (<i>a</i><sub>2</sub>)</div>
-                            <div class="grid-cell input-cell">
-                                <input type="number" id="m-21" value="15" step="0.5" class="mono-font mat-input">
-                            </div>
-                            <div class="grid-cell input-cell">
-                                <input type="number" id="m-22" value="0" step="0.5" class="mono-font mat-input">
-                            </div>
-                        </div>
-
-                        <!-- Botón de restauración rápida -->
-                        <div class="text-right mt-2">
-                            <button id="reset-matrix-btn" class="btn-handdrawn mini-btn secondary-btn">Restablecer
-                                Valores Iniciales</button>
-                        </div>
-
-                        <div class="note-sticker text-left mt-3">
-                            <span class="sticker-pin">💡</span>
-                            <h3 class="handwritten-h3">Lógica del Cálculo: Indiferencia</h3>
-                            <p>Para que Bolívar sea impredecible, debe igualar el pago esperado de Strongest sea cual
-                                sea su defensa:</p>
-                            <div class="mono-math" id="eq-bolivar">VE(b<sub>1</sub>) = VE(b<sub>2</sub>)</div>
-                            <p>Para Strongest, iguala el pago esperado de Bolívar ante cualquier ataque:</p>
-                            <div class="mono-math" id="eq-strongest">VE(a<sub>1</sub>) = VE(a<sub>2</sub>)</div>
-                        </div>
-                    </div>
-
-                    <!-- Panel de Resultados y Gráfica -->
-                    <div class="card sketch-border outputs-visualization-card">
-                        <h2 class="handwritten-h2">Resultados y Visualización Gráfica</h2>
-
-                        <div class="stats-grid">
-                            <div class="stat-box">
-                                <div class="stat-val font-blue" id="val-p">75.0%</div>
-                                <div class="stat-desc">Probabilidad Bolívar Atacar Bandas (<i>p</i><sup>*</sup>)</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-val font-accent" id="val-q">30.0%</div>
-                                <div class="stat-desc">Probabilidad Strongest Defender Bandas (<i>q</i><sup>*</sup>)
-                                </div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-val" id="val-maximin">1.00</div>
-                                <div class="stat-desc">Valor Maximin (Piso Bolívar)</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-val" id="val-minimax">6.00</div>
-                                <div class="stat-desc">Valor Minimax (Techo Strongest)</div>
-                            </div>
-                            <div class="stat-box full-width">
-                                <div class="stat-val" id="val-v">4.50</div>
-                                <div class="stat-desc">Valor del Juego (Yardas esperadas para Bolívar)</div>
-                            </div>
-                        </div>
-
-                        <!-- Gráfico interactivo SVG de Intersección Lineal -->
-                        <div class="chart-container">
-                            <h4 class="handwritten-h4 text-center">Búsqueda de la Probabilidad Óptima
-                                <i>p</i><sup>*</sup>
-                            </h4>
-                            <svg id="intersection-graph" viewBox="0 0 400 240" class="svg-graph">
-                                <!-- Se dibuja dinámicamente con JS -->
-                            </svg>
-                        </div>
-
-                        <div id="solver-explanation" class="solver-explanation-box">
-                            <!-- Mensajes del resolvedor explicados paso a paso -->
-                        </div>
-                    </div>
-
+            <!-- SECCIÓN 2: CLÁSICO PACEÑO (BOLÍVAR VS THE STRONGEST) -->
+            <section id="section-2" class="presenter-section">
+                <div class="tape-effect text-center">Sección 2: Bolívar vs. The Strongest</div>
+                
+                <!-- Navegador por pasos -->
+                <div class="step-navigator">
+                    <button class="btn-handdrawn mini-btn prev-step-btn" data-section="2">← Atrás</button>
+                    <span class="step-indicator" id="step-indicator-2">Paso 1 de 4: Planteamiento</span>
+                    <button class="btn-handdrawn mini-btn next-step-btn" data-section="2">Adelante →</button>
                 </div>
-            </section>
 
-            <!-- SECCIÓN 5: DOMINANCIA Y PANORAMA -->
-            <section id="section-5" class="presenter-section">
-                <div class="tape-effect text-center">Sección 5: Reducción por Dominancia y Conclusiones</div>
                 <div class="layout-asymmetric">
+                    <!-- Columna de Contenido Principal -->
                     <div class="card sketch-border main-content-card">
-                        <h2 class="handwritten-h2">5. Reducción por Dominancia y Aplicaciones</h2>
-                        <p>Cuando los juegos son de mayor dimensión (como 3 &times; 3 o más) y no tienen una solución
-                            pura, resolverlos directamente es complejo. La herramienta clave es la <strong>dominancia
-                                estratégica</strong>.</p>
+                        
+                        <!-- Paso 1: Planteamiento -->
+                        <div class="step-content active" data-step="1">
+                            <h2 class="handwritten-h2">Paso 1: Planteamiento del Clásico Paceño</h2>
+                            <p>El Bolívar (Ataque) decide si atacar por las bandas o el centro, mientras que The Strongest (Defensa) elige qué zona cubrir. Los valores representan las yardas promedio ganadas por Bolívar.</p>
+                            <p>Edita los números en la matriz de la derecha para ver cómo cambian los cálculos en cada paso.</p>
+                        </div>
 
-                        <p class="highlight-yellow">
-                            <strong>Estrategia Dominada:</strong> Una estrategia <i>a</i><sub>i</sub> domina a
-                            <i>a</i><sub>k</sub> si <i>V</i><sub>ij</sub> &ge; <i>V</i><sub>kj</sub> para toda columna
-                            <i>j</i>, con desigualdad estricta en al menos una columna. Análogamente para las de B. El
-                            jugador racional <strong>nunca</strong> la usaría y se puede eliminar.
-                        </p>
-
-                        <h3 class="handwritten-h3">Ejemplo de Reducción Iterativa:</h3>
-                        <div class="reduction-steps">
-                            <div class="step-card">
-                                <h5>1. Matriz Original 3x3</h5>
-                                <p class="small-text">No hay estrategia pura (Maximin -1 &ne; Minimax 2).</p>
-                                <table class="mini-matrix-table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th><i>b</i><sub>1</sub></th>
-                                            <th><i>b</i><sub>2</sub></th>
-                                            <th><i>b</i><sub>3</sub></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><i>a</i><sub>1</sub></th>
-                                            <td>0</td>
-                                            <td>-1</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th><i>a</i><sub>2</sub></th>
-                                            <td>5</td>
-                                            <td>4</td>
-                                            <td>-3</td>
-                                        </tr>
-                                        <tr>
-                                            <th><i>a</i><sub>3</sub></th>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>-4</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="step-arrow">&rarr;</div>
-                            <div class="step-card">
-                                <h5>2. Eliminar para A</h5>
-                                <p class="small-text">La fila <i>a</i><sub>2</sub> domina a la fila <i>a</i><sub>3</sub>
-                                    (puesto que 5 &gt; 2, 4 &gt; 3, -3 &gt; -4). Se tacha <i>a</i><sub>3</sub>.</p>
-                                <table class="mini-matrix-table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th><i>b</i><sub>1</sub></th>
-                                            <th><i>b</i><sub>2</sub></th>
-                                            <th><i>b</i><sub>3</sub></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><i>a</i><sub>1</sub></th>
-                                            <td>0</td>
-                                            <td>-1</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th><i>a</i><sub>2</sub></th>
-                                            <td>5</td>
-                                            <td>4</td>
-                                            <td>-3</td>
-                                        </tr>
-                                        <tr class="struck-out">
-                                            <th><i>a</i><sub>3</sub></th>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>-4</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="step-arrow">&rarr;</div>
-                            <div class="step-card">
-                                <h5>3. Eliminar para B</h5>
-                                <p class="small-text">Como B busca pagos pequeños, la columna <i>b</i><sub>2</sub>
-                                    domina a <i>b</i><sub>1</sub> (-1 &lt; 0, 4 &lt; 5). Se tacha <i>b</i><sub>1</sub>.
-                                </p>
-                                <table class="mini-matrix-table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th class="struck-out"><i>b</i><sub>1</sub></th>
-                                            <th><i>b</i><sub>2</sub></th>
-                                            <th><i>b</i><sub>3</sub></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><i>a</i><sub>1</sub></th>
-                                            <td class="struck-out">0</td>
-                                            <td>-1</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th><i>a</i><sub>2</sub></th>
-                                            <td class="struck-out">5</td>
-                                            <td>4</td>
-                                            <td>-3</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="step-arrow">&rarr;</div>
-                            <div class="step-card">
-                                <h5>4. Matriz Reducida 2x2</h5>
-                                <p class="small-text">Queda lista para resolver: filas {<i>a</i><sub>1</sub>,
-                                    <i>a</i><sub>2</sub>} y columnas {<i>b</i><sub>2</sub>, <i>b</i><sub>3</sub>}.
-                                </p>
-                                <table class="mini-matrix-table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th><i>b</i><sub>2</sub></th>
-                                            <th><i>b</i><sub>3</sub></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><i>a</i><sub>1</sub></th>
-                                            <td>-1</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th><i>a</i><sub>2</sub></th>
-                                            <td>4</td>
-                                            <td>-3</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <!-- Paso 2: Análisis Maximin / Minimax -->
+                        <div class="step-content" data-step="2">
+                            <h2 class="handwritten-h2">Paso 2: Análisis de Maximin y Minimax</h2>
+                            <p>Buscamos si existe un punto de silla verificando si el máximo de los mínimos de fila (Maximin) es igual al mínimo de los máximos de columna (Minimax).</p>
+                            <div id="sec2-step2-results">
+                                <!-- Generado dinámicamente -->
                             </div>
                         </div>
+
+                        <!-- Paso 3: Resolución de Estrategias Mixtas -->
+                        <div class="step-content" data-step="3">
+                            <h2 class="handwritten-h2">Paso 3: Cálculo de Estrategias Mixtas</h2>
+                            <p>Utilizando el principio de indiferencia, calculamos las probabilidades óptimas para mantener un juego impredecible:</p>
+                            <div id="sec2-step3-results" class="solver-explanation-box">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 4: Interpretación y Gráfica -->
+                        <div class="step-content" data-step="4">
+                            <h2 class="handwritten-h2">Paso 4: Gráfico de Intersección y Conclusión</h2>
+                            <div class="chart-container">
+                                <svg id="sec2-graph" viewBox="0 0 400 240" class="svg-graph"></svg>
+                            </div>
+                            <div id="sec2-step4-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
                     </div>
 
+                    <!-- Columna Lateral: Matriz del Enunciado (Siempre Visible) -->
                     <div class="doodle-sidebar">
                         <div class="note-sticker">
-                            <span class="sticker-pin">📍</span>
-                            <h3 class="handwritten-h3">Aplicaciones en Bolivia 🇧🇴</h3>
-                            <p class="small-text">La teoría de juegos modela escenarios reales en el país:</p>
-                            <ul class="doodle-list mini-list">
-                                <li>Subastas de espectro radioeléctrico por la <strong>ATT</strong>.</li>
-                                <li>Negociaciones de contratos del gas con multinacionales.</li>
-                                <li>Fijación estratégica de tarifas aéreas locales.</li>
-                                <li>Simulación estratégica del mercado informal de divisas.</li>
-                            </ul>
+                            <span class="sticker-pin">⚽</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 10px;">Matriz del Enunciado</h3>
+                            
+                            <div class="matrix-input-grid">
+                                <div class="grid-cell label-cell">Bolívar \ Strongest</div>
+                                <div class="grid-cell label-cell">b1 (Bandas)</div>
+                                <div class="grid-cell label-cell">b2 (Centro)</div>
+
+                                <div class="grid-cell row-label-cell">a1 (Bandas)</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec2-m11" value="1" step="0.5" class="mono-font mat-input sec2-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec2-m12" value="6" step="0.5" class="mono-font mat-input sec2-input">
+                                </div>
+
+                                <div class="grid-cell row-label-cell">a2 (Centro)</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec2-m21" value="15" step="0.5" class="mono-font mat-input sec2-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec2-m22" value="0" step="0.5" class="mono-font mat-input sec2-input">
+                                </div>
+                            </div>
+                            <p class="small-text" style="margin-top: 10px; text-align: center;">¡Edita cualquier valor para actualizar la resolución!</p>
+                            <button id="reset-sec2-btn" class="btn-handdrawn mini-btn secondary-btn" style="width: 100%; margin-top: 10px;">Restablecer Valores</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: ESPAÑA VS ARGENTINA (EJERCICIO MUNDIAL) -->
+            <section id="section-3" class="presenter-section">
+                <div class="tape-effect text-center">Sección 3: Final del Mundial (España vs. Argentina)</div>
+                
+                <!-- Navegador por pasos -->
+                <div class="step-navigator">
+                    <button class="btn-handdrawn mini-btn prev-step-btn" data-section="3">← Atrás</button>
+                    <span class="step-indicator" id="step-indicator-3">Paso 1 de 4: Planteamiento</span>
+                    <button class="btn-handdrawn mini-btn next-step-btn" data-section="3">Adelante →</button>
+                </div>
+
+                <div class="layout-asymmetric">
+                    <!-- Columna de Contenido Principal -->
+                    <div class="card sketch-border main-content-card">
+                        
+                        <!-- Paso 1: Planteamiento -->
+                        <div class="step-content active" data-step="1">
+                            <h2 class="handwritten-h2">Paso 1: Análisis Táctico de FBref</h2>
+                            <p>El cuerpo técnico analiza el rendimiento ofensivo neto de España frente a la respuesta defensiva de Argentina. Estos datos corresponden a estadísticas reales consolidadas del partido.</p>
+                            
+                            <div class="solver-explanation-box" style="margin: 10px 0; font-size: 1.15rem; line-height: 1.4;">
+                                <strong>¿Cómo se construyó la matriz a partir de los datos?</strong>
+                                <ul style="margin-left: 15px; margin-top: 5px; list-style-type: disc;">
+                                    <li><strong>a<sub>11</sub> (Bandas vs. Faltas) = +4:</strong> Centros de España (27) - Faltas de Argentina (23) = <strong>4</strong></li>
+                                    <li><strong>a<sub>12</sub> (Bandas vs. Quites) = +11:</strong> Centros de España (27) - Quites ganados de Argentina (16) = <strong>11</strong></li>
+                                    <li><strong>a<sub>21</sub> (Tiros vs. Faltas) = +15:</strong> Efectividad ofensiva de tiros (15 remates totales de España) = <strong>15</strong></li>
+                                    <li><strong>a<sub>22</sub> (Tiros vs. Quites) = -4:</strong> Tiros a puerta de España (12) - Quites ganados de Argentina (16) = <strong>-4</strong></li>
+                                </ul>
+                            </div>
+
+                            <p class="highlight-yellow" style="margin-top: 10px;">
+                                <strong>Fuente de Datos:</strong> Puedes ver las estadísticas oficiales del encuentro en <a href="https://fbref.com/en/matches/bedbfe84/Spain-Argentina-July-19-2026-World-Cup" target="_blank" style="color: var(--accent-color); text-decoration: underline;">FBref: Spain vs Argentina (Final 2026)</a>.
+                            </p>
+                        </div>
+
+                        <!-- Paso 2: Análisis de Punto de Silla -->
+                        <div class="step-content" data-step="2">
+                            <h2 class="handwritten-h2">Paso 2: Evaluación de Equilibrio Puro</h2>
+                            <p>Calculamos los peores escenarios de cada uno para ver si el equilibrio se encuentra en estrategias puras:</p>
+                            <div id="sec3-step2-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 3: Estrategias Mixtas y Valor del Juego -->
+                        <div class="step-content" data-step="3">
+                            <h2 class="handwritten-h2">Paso 3: Cálculo de Probabilidades Óptimas</h2>
+                            <div id="sec3-step3-results" class="solver-explanation-box">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 4: Interpretación del Juego -->
+                        <div class="step-content" data-step="4">
+                            <h2 class="handwritten-h2">Paso 4: Conclusiones Tácticas del Mundial</h2>
+                            <div id="sec3-step4-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Columna Lateral: Matriz del Enunciado (Siempre Visible) -->
+                    <div class="doodle-sidebar">
+                        <div class="note-sticker">
+                            <span class="sticker-pin">🏆</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 10px;">Matriz Mundial</h3>
+                            
+                            <div class="matrix-input-grid">
+                                <div class="grid-cell label-cell">ESP \ ARG</div>
+                                <div class="grid-cell label-cell">B1 (Faltas)</div>
+                                <div class="grid-cell label-cell">B2 (Quites)</div>
+
+                                <div class="grid-cell row-label-cell">A1 (Bandas)</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec3-m11" value="4" class="mono-font mat-input sec3-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec3-m12" value="11" class="mono-font mat-input sec3-input">
+                                </div>
+
+                                <div class="grid-cell row-label-cell">A2 (Puerta)</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec3-m21" value="15" class="mono-font mat-input sec3-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec3-m22" value="-4" class="mono-font mat-input sec3-input">
+                                </div>
+                            </div>
+                            <p class="small-text" style="margin-top: 10px; text-align: center;">Cambia los valores para ver la variación en el dominio del juego.</p>
+                            <button id="reset-sec3-btn" class="btn-handdrawn mini-btn secondary-btn" style="width: 100%; margin-top: 10px;">Restablecer Valores</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: REDUCCIÓN DE MATRICES INTERACTIVA -->
+            <section id="section-4" class="presenter-section">
+                <div class="tape-effect text-center">Sección 4: Reducción Interactiva de Matrices</div>
+                
+                <!-- Navegador por pasos -->
+                <div class="step-navigator">
+                    <button class="btn-handdrawn mini-btn prev-step-btn" data-section="4">← Atrás</button>
+                    <span class="step-indicator" id="step-indicator-4">Paso 1 de 4: Planteamiento</span>
+                    <button class="btn-handdrawn mini-btn next-step-btn" data-section="4">Adelante →</button>
+                </div>
+
+                <div class="layout-asymmetric">
+                    <!-- Columna de Contenido Principal -->
+                    <div class="card sketch-border main-content-card">
+                        
+                        <!-- Paso 1: Planteamiento -->
+                        <div class="step-content active" data-step="1">
+                            <h2 class="handwritten-h2">Paso 1: Definir la Matriz General 3x3</h2>
+                            <p>Utiliza la matriz de la derecha para definir cualquier juego de 3x3. La reducción por dominancia y el análisis se generará dinámicamente paso a paso.</p>
+                        </div>
+
+                        <!-- Paso 2: Eliminación para el Jugador A -->
+                        <div class="step-content" data-step="2">
+                            <h2 class="handwritten-h2">Paso 2: Dominancia del Jugador A (Filas)</h2>
+                            <p>El jugador A busca maximizar su pago. Eliminamos la fila que está dominada por otra.</p>
+                            <div id="sec4-step2-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 3: Eliminación para el Jugador B -->
+                        <div class="step-content" data-step="3">
+                            <h2 class="handwritten-h2">Paso 3: Dominancia del Jugador B (Columnas)</h2>
+                            <p>El jugador B busca minimizar el pago que le hace a A. Eliminamos la columna dominada en la matriz resultante.</p>
+                            <div id="sec4-step3-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 4: Matriz Resultante Reducida -->
+                        <div class="step-content" data-step="4">
+                            <h2 class="handwritten-h2">Paso 4: Matriz Reducida Final</h2>
+                            <p>La matriz se ha simplificado a una dimensión menor. En este paso vemos la matriz de juego final utilizable:</p>
+                            <div id="sec4-step4-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Columna Lateral: Matriz del Enunciado (Siempre Visible) -->
+                    <div class="doodle-sidebar">
+                        <div class="note-sticker">
+                            <span class="sticker-pin">⚡</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 10px;">Matriz 3x3</h3>
+                            
+                            <div class="matrix-input-grid matrix-3x3">
+                                <div class="grid-cell label-cell">A \ B</div>
+                                <div class="grid-cell label-cell">b1</div>
+                                <div class="grid-cell label-cell">b2</div>
+                                <div class="grid-cell label-cell">b3</div>
+
+                                <div class="grid-cell row-label-cell">a1</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m11" value="0" class="mono-font mat-input sec4-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m12" value="-1" class="mono-font mat-input sec4-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m13" value="2" class="mono-font mat-input sec4-input">
+                                </div>
+
+                                <div class="grid-cell row-label-cell">a2</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m21" value="5" class="mono-font mat-input sec4-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m22" value="4" class="mono-font mat-input sec4-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m23" value="-3" class="mono-font mat-input sec4-input">
+                                </div>
+
+                                <div class="grid-cell row-label-cell">a3</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m31" value="2" class="mono-font mat-input sec4-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m32" value="3" class="mono-font mat-input sec4-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec4-m33" value="-4" class="mono-font mat-input sec4-input">
+                                </div>
+                            </div>
+                            <p class="small-text" style="margin-top: 10px; text-align: center;">Edita los valores para computar la dominancia paso a paso.</p>
+                            <button id="reset-sec4-btn" class="btn-handdrawn mini-btn secondary-btn" style="width: 100%; margin-top: 10px;">Restablecer Valores</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: PUMAKATARI VS MINIBUSES (EJERCICIO DEL EXAMEN) -->
+            <section id="section-5" class="presenter-section">
+                <div class="tape-effect text-center">Sección 5: Pumakatari vs. Minibuses</div>
+                
+                <!-- Navegador por pasos -->
+                <div class="step-navigator">
+                    <button class="btn-handdrawn mini-btn prev-step-btn" data-section="5">← Atrás</button>
+                    <span class="step-indicator" id="step-indicator-5">Paso 1 de 4: Planteamiento</span>
+                    <button class="btn-handdrawn mini-btn next-step-btn" data-section="5">Adelante →</button>
+                </div>
+
+                <div class="layout-asymmetric">
+                    <!-- Columna de Contenido Principal -->
+                    <div class="card sketch-border main-content-card">
+                        
+                        <!-- Paso 1: Planteamiento -->
+                        <div class="step-content active" data-step="1">
+                            <h2 class="handwritten-h2">Paso 1: Competencia de Transporte Paceño</h2>
+                            <p>El bus Pumakatari y el sindicato de minibuses compiten por el mercado de una ruta troncal. La matriz a la derecha representa el diferencial de cuota de mercado ganado por el Pumakatari.</p>
+                            <p>Modifica cualquier valor en la matriz de la derecha para recalcular la reducción por dominancia y las estrategias mixtas finales.</p>
+                        </div>
+
+                        <!-- Paso 2: Reducción por Dominancia -->
+                        <div class="step-content" data-step="2">
+                            <h2 class="handwritten-h2">Paso 2: Reducción por Dominancia</h2>
+                            <p>Analizamos qué estrategias están dominadas por otras para reducirlas y simplificar el análisis.</p>
+                            <div id="sec5-step2-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 3: Estrategias Mixtas en la Matriz Reducida -->
+                        <div class="step-content" data-step="3">
+                            <h2 class="handwritten-h2">Paso 3: Estrategias Mixtas Optimizadas</h2>
+                            <div id="sec5-step3-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 4: Interpretación Práctica -->
+                        <div class="step-content" data-step="4">
+                            <h2 class="handwritten-h2">Paso 4: Aplicación y Práctica</h2>
+                            <div id="sec5-step4-results">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Columna Lateral: Matriz del Enunciado (Siempre Visible) -->
+                    <div class="doodle-sidebar">
+                        <div class="note-sticker yellow-sticker">
+                            <span class="sticker-pin">🚌</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 10px;">Matriz 3x3</h3>
+                            
+                            <div class="matrix-input-grid matrix-3x3">
+                                <div class="grid-cell label-cell">Puma \ Minis</div>
+                                <div class="grid-cell label-cell">B1</div>
+                                <div class="grid-cell label-cell">B2</div>
+                                <div class="grid-cell label-cell">B3</div>
+
+                                <div class="grid-cell row-label-cell">A1</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m11" value="4" class="mono-font mat-input sec5-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m12" value="-2" class="mono-font mat-input sec5-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m13" value="6" class="mono-font mat-input sec5-input">
+                                </div>
+
+                                <div class="grid-cell row-label-cell">A2</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m21" value="2" class="mono-font mat-input sec5-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m22" value="3" class="mono-font mat-input sec5-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m23" value="2" class="mono-font mat-input sec5-input">
+                                </div>
+
+                                <div class="grid-cell row-label-cell">A3</div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m31" value="1" class="mono-font mat-input sec5-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m32" value="0" class="mono-font mat-input sec5-input">
+                                </div>
+                                <div class="grid-cell input-cell">
+                                    <input type="number" id="sec5-m33" value="5" class="mono-font mat-input sec5-input">
+                                </div>
+                            </div>
+                            <p class="small-text" style="margin-top: 10px; text-align: center;">Modifica la matriz para ver la dominancia dinámica.</p>
+                            <button id="reset-sec5-btn" class="btn-handdrawn mini-btn secondary-btn" style="width: 100%; margin-top: 10px;">Restablecer Valores</button>
                         </div>
                     </div>
                 </div>
@@ -645,7 +618,7 @@
 
         <!-- Pie de página con créditos -->
         <footer class="presentation-footer text-center">
-            <p>Teoría de Decisiones</p>
+            <p>Teoría de Decisiones - Universidad Mayor de San Andrés</p>
         </footer>
     </div>
 
