@@ -69,7 +69,7 @@
                 <div style="max-width: 800px; margin: 0 auto;">
                     <div class="card sketch-border main-content-card">
                         <h2 class="handwritten-h2" style="font-size: 2.2rem; text-align: center; margin-top: 1rem;">
-                            Teoría de Juegos, Estrategias Mixtas y Reducción por Dominancia
+                            Teoría de Juegos, Estrategias Puras, Mixtas y Reducción por Dominancia
                         </h2>
 
                         <p style="text-align: center; font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 2rem;">
@@ -83,11 +83,11 @@
                                 style="text-align: center; border-bottom: 1px dashed rgba(14, 42, 92, 0.15); padding-bottom: 5px;">
                                 Equipo de Trabajo</h3>
                             <ul class="doodle-list" style="font-size: 1.15rem; margin-top: 10px;">
-                                <li><strong>Presentador 1:</strong> [Nombre del Presentador 1]</li>
-                                <li><strong>Presentador 2:</strong> [Nombre del Presentador 2]</li>
-                                <li><strong>Presentador 3:</strong> [Nombre del Presentador 3]</li>
-                                <li><strong>Presentador 4:</strong> [Nombre del Presentador 4]</li>
-                                <li><strong>Presentador 5:</strong> [Nombre del Presentador 5]</li>
+                                <li><strong>Sección 1:</strong> Silva Condori Gina Liz</li>
+                                <li><strong>Sección 2:</strong> Flores Tapia Ruddy</li>
+                                <li><strong>Sección 3:</strong> Muñoz Callisaya Gabriel Marcelo</li>
+                                <li><strong>Sección 4:</strong> Toledo Lopez Milton Josue</li>
+                                <li><strong>Sección 5:</strong> Vasquez Condori Fioela Katherine</li>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +114,8 @@
                             <p>A diferencia de la toma de decisiones clásica (donde el entorno es pasivo), en la
                                 <strong>Teoría de Juegos</strong> nos enfrentamos a un <strong>oponente
                                     inteligente</strong> que busca su propio beneficio, afectando directamente nuestros
-                                resultados.</p>
+                                resultados.
+                            </p>
                             <p class="highlight-yellow">
                                 <strong>Clave:</strong> Debemos predecir la estrategia del rival sabiendo que él también
                                 intenta predecir la nuestra.
@@ -147,7 +148,7 @@
 
                         <!-- Paso 4: Punto de Silla (Equilibrio Puro) -->
                         <div class="step-content" data-step="4">
-                            <h2 class="handwritten-h2">Paso 4: Punto de Silla</h2>
+                            <h2 class="handwritten-h2">Paso 4: Punto de Silla o Equilibrio de Nash</h2>
                             <p>Ocurre cuando <span class="mono-math">Maximin = Minimax</span>. Este punto representa un
                                 equilibrio estable en <strong>estrategias puras</strong>; ninguno tiene incentivos para
                                 cambiar su decisión unilateralmente.</p>
@@ -208,13 +209,15 @@
                         <!-- Paso 5 Sidebar -->
                         <div class="note-sticker yellow-sticker step-content" data-step="5">
                             <span class="sticker-pin">🎲</span>
-                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Fórmulas Mixtas
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 5px;">Valor del Juego
                             </h3>
-                            <p class="small-text" style="line-height: 1.3; font-size: 0.95rem;">
-                                <strong>A (p):</strong> (a<sub>22</sub> - a<sub>21</sub>) / D<br>
-                                <strong>B (q):</strong> (a<sub>22</sub> - a<sub>12</sub>) / D<br>
-                                <em>donde D = a<sub>11</sub> - a<sub>12</sub> - a<sub>21</sub> + a<sub>22</sub></em>
-                            </p>
+                            <p class="small-text" style="margin-bottom: 5px;">Si no hay punto de silla, entonces se usa
+                                la fórmula para estrategias mixtas:</p>
+                            <div class="mono-math" style="font-size: 1.1rem; text-align: center; margin: 5px 0 10px 0;">
+                                V = a<sub>11</sub>(p*) + a<sub>21</sub>(1 - p*)
+                            </div>
+                            <p class="small-text" style="margin-bottom: 5px;">Donde p* es la probabilidad óptima de un
+                                jugador para tomar una decisión.</p>
                         </div>
                     </div>
                 </div>
@@ -451,8 +454,8 @@
                             <button id="fictional-sec3-btn" class="btn-handdrawn mini-btn"
                                 style="width: 100%; margin-top: 8px; background-color: var(--highlighter-color); color: var(--text-color); display: none;">Valores
                                 <span
-                                    style="font-size: 0.65em; vertical-align: super; line-height: 0; opacity: 0.7;">"</span>ficticios<span
-                                    style="font-size: 0.65em; vertical-align: super; line-height: 0; opacity: 0.7;">"</span></button>
+                                    style="font-size: 0.6em; vertical-align: super; line-height: 0; opacity: 0.7;">"</span>ficticios<span
+                                    style="font-size: 0.6em; vertical-align: super; line-height: 0; opacity: 0.7;">"</span></button>
                         </div>
                     </div>
                 </div>
@@ -711,7 +714,8 @@
         <!-- Pie de página con créditos -->
         <footer class="presentation-footer text-center">
             <p>Teoría de Decisiones - Universidad Mayor de San Andrés<span id="footer-heart"
-                    style="display: none; color: #ff4d6d; margin-left: 5px; font-size: 0.8rem;">❤️</span></p>
+                    style="display: none; color: #ff4d6d; margin-left: 5px; font-size: 0.8rem;">.</span></p>
+            <!-- style="display: none; color: #ff4d6d; margin-left: 5px; font-size: 0.8rem;">❤️</span></p> -->
         </footer>
     </div>
 
