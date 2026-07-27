@@ -11,7 +11,7 @@ En el clásico entre **Club Bolívar** (que juega a la ofensiva) y **The Stronge
 * $b_1$: Defensa concentrada en **bandas**.
 * $b_2$: Defensa concentrada en el **centro**.
 
-El cuerpo técnico de Bolívar estima las yardas promedio ganadas por jugada según la combinación de estrategias:
+El cuerpo técnico de Bolívar estima las metros promedio ganadas por jugada según la combinación de estrategias:
 
 ---
 

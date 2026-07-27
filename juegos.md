@@ -230,7 +230,7 @@ En el clásico entre **Club Bolívar** (que juega a la ofensiva) y **The Stronge
 
 * $b_2$: Defensa concentrada en el **centro**.
 
-El cuerpo técnico de Bolívar estima las yardas promedio ganadas por jugada según la combinación de estrategias:
+El cuerpo técnico de Bolívar estima las metros promedio ganadas por jugada según la combinación de estrategias:
 
 BAYESMATH • <page_number>38</page_number>
 
@@ -279,7 +279,7 @@ El valor maximin es 1 y el minimax es 6. Como $1 \neq 6$, **no existe solución 
 
 ### 2.5.2 Lógica de la aleatorización
 
-Intuitivamente, si Bolívar siempre ataca por el centro, The Strongest lo descubrirá y defenderá siempre el centro: Bolívar se queda en 0 yardas por jugada. Si siempre ataca por las bandas, The Strongest defenderá bandas y Bolívar avanzará apenas 1 yarda. La única manera de obtener ganancia esperada decente es *ser impredecible*: aleatorizar entre las dos opciones con probabilidades cuidadosamente calculadas.
+Intuitivamente, si Bolívar siempre ataca por el centro, The Strongest lo descubrirá y defenderá siempre el centro: Bolívar se queda en 0 metros por jugada. Si siempre ataca por las bandas, The Strongest defenderá bandas y Bolívar avanzará apenas 1 metro. La única manera de obtener ganancia esperada decente es *ser impredecible*: aleatorizar entre las dos opciones con probabilidades cuidadosamente calculadas.
 
 ### 2.5.3 Cálculo algebraico de la estrategia mixta de Bolívar
 
@@ -287,11 +287,11 @@ Sea $p$ la probabilidad de que Bolívar ataque por bandas (y $1 - p$ la de que a
 
 **Si The Strongest defiende bandas ($b_1$):**
 
-$$ VE(\text{yardas} \mid b_1) = 1p + 15(1 - p) = 15 - 14p. $$
+$$ VE(\text{metros} \mid b_1) = 1p + 15(1 - p) = 15 - 14p. $$
 
 **Si The Strongest defiende centro ($b_2$):**
 
-$$ VE(\text{yardas} \mid b_2) = 6p + 0(1 - p) = 6p. $$
+$$ VE(\text{metros} \mid b_2) = 6p + 0(1 - p) = 6p. $$
 
 La probabilidad óptima $p^*$ es aquella que *iguala* los dos pagos esperados. De esa forma, The Strongest resulta indiferente entre sus dos defensas y no puede mejorar cambiando la suya:
 
@@ -301,7 +301,7 @@ Bolívar debe atacar por las bandas el 75 % del tiempo y por el centro el 25 %.
 
 **Valor del juego.** Sustituyendo:
 
-$$ V = 1(0.75) + 15(0.25) = 4.5 \text{ yardas por jugada.} $$
+$$ V = 1(0.75) + 15(0.25) = 4.5 \text{ metros por jugada.} $$
 
 BAYESMATH • 39
 
@@ -313,15 +313,15 @@ CAPÍTULO 2. UTILIDAD Y TEORÍA DE JUEGOS
 
 Sea $q$ la probabilidad de que The Strongest defienda bandas. El pago esperado de Bolívar según su propia elección:
 
-$$VE(\text{yardas} \mid a_1) = 1q + 6(1 - q) = 6 - 5q$$
+$$VE(\text{metros} \mid a_1) = 1q + 6(1 - q) = 6 - 5q$$
 
-$$VE(\text{yardas} \mid a_2) = 15q + 0(1 - q) = 15q$$
+$$VE(\text{metros} \mid a_2) = 15q + 0(1 - q) = 15q$$
 
 Igualando:
 
 $$6 - 5q = 15q \implies 20q = 6 \implies q^* = 0.30.$$
 
-The Strongest debe defender bandas el 30% del tiempo y el centro el 70%. El valor del juego confirma las 4.5 yardas esperadas por jugada.
+The Strongest debe defender bandas el 30% del tiempo y el centro el 70%. El valor del juego confirma las 4.5 metros esperados por jugada.
 
 > 
 
@@ -334,7 +334,7 @@ The Strongest debe defender bandas el 30% del tiempo y el centro el 70%. El valo
 > **Estrategia óptima de The Strongest:** defender bandas con probabilidad 0.30 y centro con probabilidad 0.70.
 > 
 
-> **Valor del juego:** 4.5 yardas por jugada esperadas (favorable a la ofensiva de Bolívar).
+> **Valor del juego:** 4.5 metros por jugada esperados (favorable a la ofensiva de Bolívar).
 
 > 
 

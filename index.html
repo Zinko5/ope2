@@ -230,7 +230,7 @@
                 <!-- Navegador por pasos -->
                 <div class="step-navigator">
                     <button class="btn-handdrawn mini-btn prev-step-btn" data-section="2">← Atrás</button>
-                    <span class="step-indicator" id="step-indicator-2">Paso 1 de 4: Planteamiento</span>
+                    <span class="step-indicator" id="step-indicator-2">Paso 1 de 5: Planteamiento</span>
                     <button class="btn-handdrawn mini-btn next-step-btn" data-section="2">Adelante →</button>
                 </div>
 
@@ -242,10 +242,42 @@
                         <div class="step-content active" data-step="1">
                             <h2 class="handwritten-h2">Paso 1: Planteamiento del Clásico Paceño</h2>
                             <p>El Bolívar (Ataque) decide si atacar por las bandas o el centro, mientras que The
-                                Strongest (Defensa) elige qué zona cubrir. Los valores representan las yardas promedio
-                                ganadas por Bolívar.</p>
-                            <p>Edita los números en la matriz de la derecha para ver cómo cambian los cálculos en cada
-                                paso.</p>
+                                Strongest (Defensa) elige qué zona cubrir. Los valores representan las metros promedio
+                                ganadas por Bolívar por jugada, estimadas por el cuerpo técnico a partir de partidos
+                                anteriores del clásico paceño.</p>
+                            <p class="highlight-yellow">
+                                <strong>Por qué es un juego de suma cero:</strong> cada metro que Bolívar avanza es
+                                un metro que The Strongest cede en su marco defensivo. No hay "empate cooperativo"
+                                posible: el terreno ganado por uno es exactamente el terreno perdido por el otro.
+                            </p>
+                            <p>Este planteamiento es análogo a los modelos de <em>expected threat</em> (xT) que hoy
+                                usan los departamentos de análisis de datos en el fútbol profesional: en lugar de
+                                mirar el resultado final del partido, se mide el valor esperado de cada decisión
+                                táctica aislada, jugada por jugada.</p>
+                            <div class="chart-container">
+                                <svg viewBox="0 0 400 200" class="svg-graph" role="img"
+                                    aria-label="Cancha dividida en zona de bandas y zona central">
+                                    <rect x="10" y="10" width="380" height="180" rx="6" fill="#EAF3EA"
+                                        stroke="#333333" stroke-width="2" />
+                                    <rect x="10" y="10" width="90" height="180" fill="#0000FF" opacity="0.12"
+                                        stroke="#0000FF" stroke-dasharray="4 3" />
+                                    <rect x="300" y="10" width="90" height="180" fill="#0000FF" opacity="0.12"
+                                        stroke="#0000FF" stroke-dasharray="4 3" />
+                                    <rect x="130" y="10" width="140" height="180" fill="#D12828" opacity="0.10"
+                                        stroke="#D12828" stroke-dasharray="4 3" />
+                                    <line x1="200" y1="10" x2="200" y2="190" stroke="#333333" stroke-width="1.5" />
+                                    <circle cx="200" cy="100" r="26" fill="none" stroke="#333333" stroke-width="1.5" />
+                                    <text x="55" y="105" text-anchor="middle" class="svg-text font-blue"
+                                        transform="rotate(-90 55 105)">BANDA</text>
+                                    <text x="345" y="105" text-anchor="middle" class="svg-text font-blue"
+                                        transform="rotate(-90 345 105)">BANDA</text>
+                                    <text x="200" y="25" text-anchor="middle" class="svg-text font-accent"
+                                        style="font-weight:700;">CENTRO</text>
+                                </svg>
+                            </div>
+                            <p>Edita los números en la matriz de la derecha para ver cómo cambian los cálculos en
+                                cada paso: la silla, las mixtas, el gráfico, la verificación y la simulación se
+                                recalculan en vivo.</p>
                         </div>
 
                         <!-- Paso 2: Análisis Maximin / Minimax -->
@@ -276,6 +308,39 @@
                             </div>
                             <div id="sec2-step4-results">
                                 <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Paso 5: Verificación de Estabilidad, Explotabilidad y Simulación -->
+                        <div class="step-content" data-step="5">
+                            <h2 class="handwritten-h2">Paso 5: Verificación, Explotabilidad y Simulación</h2>
+                            <p>Un resultado teórico solo convence a un jurado si además se <strong>verifica</strong>.
+                                Aquí probamos la estabilidad del equilibrio mixto, mostramos qué pasa si un
+                                entrenador se desvía, y simulamos el juego cientos de veces para comprobar que la
+                                media empírica converge al valor teórico <em>V</em>.</p>
+
+                            <div id="sec2-step5-verification" class="solver-explanation-box">
+                                <!-- Generado dinámicamente: prueba de indiferencia + explotabilidad -->
+                            </div>
+
+                            <h3 class="handwritten-h3" style="margin-top: 1.2rem;">Simulación de Monte Carlo</h3>
+                            <p class="small-text">Se simulan jugadas independientes: Bolívar ataca por bandas con
+                                probabilidad <em>p*</em> y The Strongest defiende bandas con probabilidad
+                                <em>q*</em>, ambos generados con números aleatorios. Se grafica el promedio
+                                acumulado de metros y se compara contra <em>V</em>.</p>
+
+                            <div class="reduction-steps" style="justify-content: flex-start; gap: 1rem;">
+                                <button id="sec2-mc-run-btn" class="btn-handdrawn mini-btn">▶ Simular 500
+                                    jugadas</button>
+                                <button id="sec2-mc-reset-btn" class="btn-handdrawn mini-btn secondary-btn">✕
+                                    Limpiar</button>
+                            </div>
+
+                            <div class="chart-container">
+                                <svg id="sec2-mc-graph" viewBox="0 0 400 200" class="svg-graph"></svg>
+                            </div>
+                            <div id="sec2-mc-summary">
+                                <!-- Generado dinámicamente al simular -->
                             </div>
                         </div>
 
@@ -317,6 +382,15 @@
                                 para actualizar la resolución!</p>
                             <button id="reset-sec2-btn" class="btn-handdrawn mini-btn secondary-btn"
                                 style="width: 100%; margin-top: 10px;">Restablecer Valores</button>
+                        </div>
+
+                        <div class="note-sticker yellow-sticker" style="margin-top: 1rem;">
+                            <span class="sticker-pin">📋</span>
+                            <h3 class="handwritten-h3" style="text-align: center; margin-bottom: 10px;">Resumen
+                                Ejecutivo</h3>
+                            <div id="sec2-summary-panel">
+                                <!-- Generado dinámicamente: tipo de solución, p*, q*, V -->
+                            </div>
                         </div>
                     </div>
                 </div>

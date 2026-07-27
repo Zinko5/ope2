@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const sectionSteps = {
         1: { current: 1, max: 5, names: ["Decisiones con Rivales", "Suma Cero y Matriz de Pagos", "Criterios Maximin y Minimax", "Punto de Silla y Estabilidad", "Estrategias Mixtas y Simplificación"] },
-        2: { current: 1, max: 4, names: ["Planteamiento", "Maximin y Minimax", "Estrategias Mixtas", "Gráfico y Conclusión"] },
+        2: { current: 1, max: 5, names: ["Planteamiento", "Maximin y Minimax", "Estrategias Mixtas", "Gráfico y Conclusión", "Verificación y Simulación"] },
         3: { current: 1, max: 4, names: ["Planteamiento", "Punto de Silla", "Cálculo de Probabilidades", "Conclusiones"] },
         4: { current: 1, max: 4, names: ["Planteamiento 3x3", "Dominancia de Filas", "Dominancia de Columnas", "Resultado Reducido"] },
         5: { current: 1, max: 4, names: ["Planteamiento", "Reducción por Dominancia", "Estrategias Mixtas", "Interpretación"] }
@@ -624,11 +624,170 @@ document.addEventListener('DOMContentLoaded', () => {
             calcParagraph.className = "math-calc";
 
             step4Div.appendChild(createMathParagraph([
-                { tag: "strong", text: `Valor del Juego (Avance esperado): V = ${sol.v.toFixed(2)} yardas.` }
+                { tag: "strong", text: `Valor del Juego (Avance esperado): V = ${sol.v.toFixed(2)} metros.` }
             ]));
             step4Div.appendChild(calcParagraph);
             step4Div.appendChild(createMathParagraph([
-                `Bolívar tiene una ventaja ofensiva promedio de ${sol.v.toFixed(2)} yardas por jugada al ejecutar la mezcla de estrategias óptima.`
+                `Bolívar tiene una ventaja ofensiva promedio de ${sol.v.toFixed(2)} metros por jugada al ejecutar la mezcla de estrategias óptima.`
+            ]));
+        }
+
+        // Paso 5: Verificación de indiferencia, explotabilidad y estado para Monte Carlo
+        sec2LastState = { m11, m12, m21, m22, sol };
+
+        const step5Div = document.getElementById('sec2-step5-verification');
+        if (step5Div) {
+            step5Div.replaceChildren();
+
+            if (sol.hasSaddlePoint) {
+                step5Div.appendChild(createMathParagraph([
+                    { tag: "span", text: "Prueba de estabilidad (punto de silla): ", className: "font-blue" },
+                    `Como existe equilibrio puro, ningún jugador puede mejorar desviándose unilateralmente. Cambiar de estrategia solo empeora (o iguala) su resultado, por lo que no aplica un análisis de explotabilidad probabilística.`
+                ]));
+            } else {
+                // Prueba de indiferencia de Strongest ante p*
+                const veB1 = m11 * sol.p_opt + m21 * (1 - sol.p_opt);
+                const veB2 = m12 * sol.p_opt + m22 * (1 - sol.p_opt);
+                step5Div.appendChild(createMathParagraph([
+                    { tag: "strong", text: "Prueba de indiferencia de The Strongest: " },
+                    `con p* = ${sol.p_opt.toFixed(3)}, VE(b1) = ${veB1.toFixed(2)} y VE(b2) = ${veB2.toFixed(2)}. `,
+                    Math.abs(veB1 - veB2) < 0.01
+                        ? { tag: "span", text: "Ambos coinciden: The Strongest es indiferente y no puede mejorar cambiando su defensa.", className: "font-blue" }
+                        : { tag: "span", text: "Pequeña discrepancia numérica por redondeo; en el óptimo exacto ambos valores son iguales a V.", className: "font-accent" }
+                ]));
+
+                // Explotabilidad: si Strongest se desvía a estrategia pura, ¿cuánto puede ganar Bolívar?
+                const gainIfB1 = Math.max(m11, m21) - sol.v;
+                const gainIfB2 = Math.max(m12, m22) - sol.v;
+                const worstDeviation = Math.max(gainIfB1, gainIfB2);
+                const deviationLabel = gainIfB1 >= gainIfB2 ? "bandas (b1)" : "centro (b2)";
+
+                step5Div.appendChild(createMathParagraph([
+                    { tag: "strong", text: "Explotabilidad si Strongest se desvía: " },
+                    `si el técnico rival abandonara la mezcla y defendiera siempre por ${deviationLabel}, Bolívar podría responder con su mejor estrategia pura y ganar `,
+                    { tag: "strong", text: `${worstDeviation.toFixed(2)} metros extra por jugada` },
+                    ` sobre el valor del juego (${sol.v.toFixed(2)}). Esto es precisamente lo que la aleatorización óptima evita: jugar siempre igual se paga caro.`
+                ]));
+            }
+        }
+
+        // Resumen ejecutivo (barra lateral, siempre visible)
+        const summaryPanel = document.getElementById('sec2-summary-panel');
+        if (summaryPanel) {
+            summaryPanel.replaceChildren();
+            summaryPanel.appendChild(createMathParagraph([
+                { tag: "strong", text: "Tipo de solución: " },
+                sol.hasSaddlePoint ? "Estrategia pura (punto de silla)" : "Estrategia mixta"
+            ]));
+            summaryPanel.appendChild(createMathParagraph([
+                { tag: "strong", text: "p* (Bolívar, bandas): " }, `${(sol.p_opt * 100).toFixed(1)}%`
+            ]));
+            summaryPanel.appendChild(createMathParagraph([
+                { tag: "strong", text: "q* (Strongest, bandas): " }, `${(sol.q_opt * 100).toFixed(1)}%`
+            ]));
+            summaryPanel.appendChild(createMathParagraph([
+                { tag: "strong", text: "Valor del juego V: " }, `${sol.v.toFixed(2)} metros/jugada`
+            ]));
+        }
+    }
+
+    /* ==========================================================================
+       5.b SIMULACIÓN DE MONTE CARLO PARA LA SECCIÓN 2
+       ========================================================================== */
+    let sec2LastState = null;
+    let sec2MCRunning = [];
+
+    function drawMonteCarloChart(svgId, runningAvg, v) {
+        const svg = document.getElementById(svgId);
+        if (!svg) return;
+        svg.replaceChildren();
+
+        const width = 400, height = 200;
+        const padding = { top: 20, right: 20, bottom: 30, left: 40 };
+        const ns = "http://www.w3.org/2000/svg";
+
+        if (!runningAvg.length) return;
+
+        const allVals = runningAvg.concat([v]);
+        const minVal = Math.min(...allVals) - 1;
+        const maxVal = Math.max(...allVals) + 1;
+
+        function getX(i) {
+            return padding.left + (i / (runningAvg.length - 1 || 1)) * (width - padding.left - padding.right);
+        }
+        function getY(val) {
+            const range = maxVal - minVal || 1;
+            const pct = (val - minVal) / range;
+            return height - padding.bottom - pct * (height - padding.top - padding.bottom);
+        }
+
+        // Línea de referencia V (valor teórico del juego)
+        const vLine = document.createElementNS(ns, "line");
+        vLine.setAttribute("x1", padding.left); vLine.setAttribute("x2", width - padding.right);
+        vLine.setAttribute("y1", getY(v)); vLine.setAttribute("y2", getY(v));
+        vLine.setAttribute("stroke", "#D12828");
+        vLine.setAttribute("stroke-width", "2");
+        vLine.setAttribute("stroke-dasharray", "5 3");
+        svg.appendChild(vLine);
+
+        const vLabel = document.createElementNS(ns, "text");
+        vLabel.setAttribute("x", width - padding.right - 4);
+        vLabel.setAttribute("y", getY(v) - 6);
+        vLabel.setAttribute("text-anchor", "end");
+        vLabel.setAttribute("class", "svg-text font-accent");
+        vLabel.textContent = `V teórico = ${v.toFixed(2)}`;
+        svg.appendChild(vLabel);
+
+        // Curva del promedio acumulado empírico
+        let d = `M ${getX(0)} ${getY(runningAvg[0])}`;
+        for (let i = 1; i < runningAvg.length; i++) {
+            d += ` L ${getX(i)} ${getY(runningAvg[i])}`;
+        }
+        const path = document.createElementNS(ns, "path");
+        path.setAttribute("d", d);
+        path.setAttribute("stroke", "#0000FF");
+        path.setAttribute("stroke-width", "2.5");
+        path.setAttribute("fill", "none");
+        svg.appendChild(path);
+
+        const empLabel = document.createElementNS(ns, "text");
+        empLabel.setAttribute("x", padding.left + 4);
+        empLabel.setAttribute("y", padding.top + 10);
+        empLabel.setAttribute("class", "svg-text font-blue");
+        empLabel.textContent = "Promedio empírico acumulado";
+        svg.appendChild(empLabel);
+    }
+
+    function runMonteCarloSection2(numTrials = 500) {
+        if (!sec2LastState) return;
+        const { m11, m12, m21, m22, sol } = sec2LastState;
+        const p = sol.p_opt, q = sol.q_opt;
+
+        const matrix = [[m11, m12], [m21, m22]];
+        let cumulative = 0;
+        const runningAvg = [];
+
+        for (let t = 1; t <= numTrials; t++) {
+            const row = Math.random() < p ? 0 : 1;
+            const col = Math.random() < q ? 0 : 1;
+            cumulative += matrix[row][col];
+            runningAvg.push(cumulative / t);
+        }
+
+        drawMonteCarloChart('sec2-mc-graph', runningAvg, sol.v);
+
+        const summaryDiv = document.getElementById('sec2-mc-summary');
+        if (summaryDiv) {
+            summaryDiv.replaceChildren();
+            const finalAvg = runningAvg[runningAvg.length - 1];
+            const diff = Math.abs(finalAvg - sol.v);
+            summaryDiv.appendChild(createMathParagraph([
+                { tag: "strong", text: `Resultado tras ${numTrials} jugadas simuladas: ` },
+                `promedio empírico = ${finalAvg.toFixed(3)} metros/jugada, valor teórico V = ${sol.v.toFixed(2)}. `,
+                { tag: "span", text: `Diferencia absoluta: ${diff.toFixed(3)} metros.`, className: diff < 0.5 ? "font-blue" : "font-accent" }
+            ]));
+            summaryDiv.appendChild(createMathParagraph([
+                `A medida que aumenta el número de jugadas, la Ley de los Grandes Números garantiza que el promedio empírico converge al valor teórico del juego, validando la solución analítica de forma experimental.`
             ]));
         }
     }
@@ -1286,6 +1445,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('sec2-m21').value = 15;
         document.getElementById('sec2-m22').value = 0;
         calculateSection2();
+        const mcSummary = document.getElementById('sec2-mc-summary');
+        if (mcSummary) mcSummary.replaceChildren();
+        const mcGraph = document.getElementById('sec2-mc-graph');
+        if (mcGraph) mcGraph.replaceChildren();
+    });
+
+    document.getElementById('sec2-mc-run-btn')?.addEventListener('click', () => {
+        calculateSection2(); // asegura que sec2LastState refleje la matriz actual
+        runMonteCarloSection2(500);
+    });
+
+    document.getElementById('sec2-mc-reset-btn')?.addEventListener('click', () => {
+        const mcSummary = document.getElementById('sec2-mc-summary');
+        if (mcSummary) mcSummary.replaceChildren();
+        const mcGraph = document.getElementById('sec2-mc-graph');
+        if (mcGraph) mcGraph.replaceChildren();
     });
 
     document.getElementById('reset-sec3-btn')?.addEventListener('click', () => {
